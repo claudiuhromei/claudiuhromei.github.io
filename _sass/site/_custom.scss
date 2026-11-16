@@ -36,17 +36,3 @@ ol.bibliography {
   color: $muted-text-color;
   font-size: $type-size-6;
 }
-
-// Email button in the author sidebar: looks like the other profile links.
-.contact-button {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}

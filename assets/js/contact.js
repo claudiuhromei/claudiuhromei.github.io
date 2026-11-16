@@ -26,6 +26,7 @@
   root.document.addEventListener("click", function (event) {
     var button = event.target.closest(".js-contact");
     if (button) {
+      event.preventDefault();
       reveal(button);
     }
   });

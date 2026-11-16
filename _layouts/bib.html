@@ -1,8 +1,10 @@
 ---
 # Template for one bibliography entry (jekyll-scholar `bibliography_template`).
+# The URL or DOI that the citation style prints in full is dropped in favour of the "Paper" link.
 ---
+{%- assign doi_url = "https://doi.org/" | append: entry.doi -%}
 <span class="publication">
-  {{ reference | replace: "Hromei, C. D.", "<strong>Hromei, C. D.</strong>" }}
+  {{ reference | remove: doi_url | remove: entry.url | replace: "Hromei, C. D.", "<strong>Hromei, C. D.</strong>" }}
   {%- if entry.award %} <strong class="publication__award">{{ entry.award }}</strong>{% endif %}
   <span class="publication__links">
     {%- if entry.url %} <a href="{{ entry.url }}">Paper</a>{% endif %}
