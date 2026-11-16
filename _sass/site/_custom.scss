@@ -160,7 +160,36 @@ ol.bibliography {
   font-size: $type-size-6;
 }
 
-// Light/dark switch, fixed to the bottom-right corner (see assets/js/theme.js).
+// Light/dark switch. assets/js/theme.js moves it into the header, at its right end; the header keeps
+// room for it so the navigation never runs underneath.
+.masthead__inner-wrap {
+  position: relative;
+  padding-inline-end: 4.25rem;
+}
+
+.masthead .theme-toggle {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 1em;
+  bottom: auto;
+  z-index: 3;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-color: transparent;
+  background-color: transparent;
+  color: $site-on-accent;
+  box-shadow: none;
+  font-size: 1.1rem;
+  transform: translateY(-50%);
+
+  &:hover,
+  &:focus-visible {
+    border-color: $site-on-accent;
+    color: $site-on-accent;
+  }
+}
+
+// Fallback placement when the page has no header: floating in the bottom-right corner.
 .theme-toggle {
   position: fixed;
   right: 1em;
