@@ -88,6 +88,16 @@ class PublicationsTest < Minitest::Test
     end
   end
 
+  # A BibTeX line is wider than a phone screen: the open block must scroll inside itself.
+  def test_open_details_cannot_grow_wider_than_the_page
+    %w[assets/css/main.css assets/css/main-dark.css].each do |css|
+      rule = File.read(site_path(css), encoding: "utf-8")[/\.publication__links details\[open\]\{([^}]*)\}/, 1]
+      refute_nil rule, "rule for open details missing in #{css}"
+      assert_includes rule, "min-width:0"
+      assert_includes rule, "max-width:100%"
+    end
+  end
+
   def test_phd_thesis_is_listed_with_its_pdf
     thesis = rendered("hromei2025thesis")
     assert_includes thesis.text, "Situated Natural Language Understanding in HRI via LLMs"
