@@ -1,0 +1,51 @@
+name: Weekly external link check
+
+# Finds links that died after they were published (conference sites go offline, papers move).
+# Pull requests only check internal links, so this runs on a schedule and reports through an issue.
+on:
+  schedule:
+    - cron: "17 5 * * 1" # Mondays, 05:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Check internal and external links
+        id: check
+        env:
+          CHECK_EXTERNAL: "1"
+        run: |
+          set -o pipefail
+          bundle exec rake test:links 2>&1 | tee link-check.log
+
+      - name: Report broken links in an issue
+        if: failure() && steps.check.conclusion == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_TITLE: Broken external links
+        run: |
+          {
+            echo "The weekly link check found broken links. Full log: $RUN_URL"
+            echo
+            echo '```'
+            grep -A1 '^\* At ' link-check.log | grep 'External link' | sort -u | head -50
+            echo '```'
+          } > report.md
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$ISSUE_TITLE\"" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file report.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ISSUE_TITLE" --body-file report.md
+          fi

@@ -3,6 +3,9 @@
 require "rake/testtask"
 
 SITE_DIR = "_site"
+# Answers of sites that refuse automated clients (LinkedIn, some publishers): the page exists,
+# so the external link check must not report them as broken.
+BOT_BLOCKED_STATUS_CODES = [403, 429, 999].freeze
 
 desc "Build the site for production into #{SITE_DIR}/"
 task :build do
@@ -40,7 +43,8 @@ namespace :test do
       checks: %w[Links Images Scripts OpenGraph Favicon],
       disable_external: ENV["CHECK_EXTERNAL"] != "1",
       enforce_https: true,
-      ignore_missing_alt: false
+      ignore_missing_alt: false,
+      ignore_status_codes: BOT_BLOCKED_STATUS_CODES
     ).run
   end
 end
