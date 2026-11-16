@@ -1,0 +1,25 @@
+// Site-specific styles, compiled into both the light and the dark stylesheet.
+
+// Publications list (see _layouts/bib.html)
+ol.bibliography {
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 1em;
+  }
+}
+
+.publication__award {
+  display: inline-block;
+  padding: 0 0.5em;
+  border: 1px solid currentColor;
+  border-radius: $border-radius;
+  font-size: $type-size-6;
+  white-space: nowrap;
+}
+
+.publication__links {
+  display: block;
+  font-size: $type-size-6;
+}

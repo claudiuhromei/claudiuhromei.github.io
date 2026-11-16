@@ -1,0 +1,9 @@
+---
+# Light stylesheet (default). Overrides the theme's assets/css/main.scss to add site styles.
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+@import "site/custom"; // site-specific styles
