@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require "rake/testtask"
+
+SITE_DIR = "_site"
+
+desc "Build the site for production into #{SITE_DIR}/"
+task :build do
+  sh({ "JEKYLL_ENV" => "production" }, "bundle exec jekyll build --strict_front_matter --trace")
+end
+
+desc "Serve the site locally with live reload at http://localhost:4000"
+task :serve do
+  sh "bundle exec jekyll serve --livereload"
+end
+
+namespace :test do
+  Rake::TestTask.new(:unit) do |t|
+    t.libs << "test"
+    t.test_files = FileList["test/**/*_test.rb"]
+    t.warning = false
+  end
+  task unit: :build
+
+  desc "Check generated HTML, images and internal links with html-proofer"
+  task links: :build do
+    require "html-proofer"
+    HTMLProofer.check_directory(
+      SITE_DIR,
+      checks: %w[Links Images Scripts OpenGraph Favicon],
+      disable_external: ENV["CHECK_EXTERNAL"] != "1",
+      enforce_https: true,
+      ignore_missing_alt: false
+    ).run
+  end
+end
+
+desc "Build the site and run all tests (set CHECK_EXTERNAL=1 to also check external links)"
+task test: %w[test:unit test:links]
+
+task default: :test
