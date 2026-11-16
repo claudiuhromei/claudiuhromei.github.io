@@ -1,4 +1,16 @@
-# Top navigation. Pages are added here as they are created (see roadmap.md).
+# Top navigation. Keep in sync with the pages in _pages/ (checked by test/pages_test.rb).
 main:
   - title: "About"
     url: /
+  - title: "Experience"
+    url: /experience/
+  - title: "Projects"
+    url: /projects/
+  - title: "Publications"
+    url: /publications/
+  - title: "Teaching & Talks"
+    url: /teaching/
+  - title: "Service & Awards"
+    url: /service/
+  - title: "CV"
+    url: /cv/

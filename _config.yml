@@ -20,11 +20,21 @@ search: false
 comments:
   provider: false
 
-# Site author (sidebar on every page). Profile links are added once confirmed.
+# Site author (sidebar on every page). Further profile links are added once confirmed.
 author:
   name: "Claudiu Daniel Hromei"
   bio: "Senior AI Scientist · AI Researcher · NLP & LLMs"
   location: "Rome, Italy"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/cdhromei/"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
+    - label: "Hugging Face"
+      icon: "fas fa-fw fa-link"
+      url: "https://huggingface.co/cdh"
 
 # Reading files
 include:
