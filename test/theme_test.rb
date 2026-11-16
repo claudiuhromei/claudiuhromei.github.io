@@ -73,6 +73,20 @@ class ThemeTest < Minitest::Test
     end
   end
 
+  def test_header_reserves_room_for_the_theme_toggle
+    [LIGHT_CSS, DARK_CSS].each do |css|
+      source = File.read(site_path(css), encoding: "utf-8")
+      assert_match(/\.masthead__inner-wrap\{[^}]*padding-inline-end:4\.25rem/, source)
+      assert_match(/\.masthead \.theme-toggle\{[^}]*position:absolute/, source)
+    end
+  end
+
+  def test_theme_script_moves_the_toggle_into_the_header
+    source = File.read(THEME_JS_SOURCE, encoding: "utf-8")
+    assert_match(/querySelector\("\.masthead__inner-wrap"\)/, source)
+    assert_includes source, "header.appendChild(button)"
+  end
+
   def test_stored_choice_decides_when_the_dark_stylesheet_applies
     assert_equal "all", theme_js("darkStylesheetMedia", "dark")
     assert_equal "not all", theme_js("darkStylesheetMedia", "light")

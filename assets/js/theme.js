@@ -96,6 +96,13 @@
       return;
     }
 
+    // The button is rendered at the end of the page (the theme has no hook inside the header)
+    // and moved into the header here; without a header it stays as a floating button.
+    var header = document.querySelector(".masthead__inner-wrap");
+    if (header) {
+      header.appendChild(button);
+    }
+
     button.hidden = false;
     updateButton(button, effectiveTheme(preference, systemDark.matches));
 
