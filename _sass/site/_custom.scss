@@ -306,6 +306,11 @@ $site-text-measure: 37em;
     font-size: 11pt;
   }
 
+  // No colour fades while switching to the print layout.
+  * {
+    transition: none !important;
+  }
+
   // The theme's own print rules use a dark grey; plain black prints sharper.
   .page__title,
   .page__title *,

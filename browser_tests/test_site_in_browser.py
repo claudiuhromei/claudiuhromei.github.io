@@ -142,6 +142,7 @@ def test_follow_button_opens_the_profile_links_on_a_phone(open_page):
 def test_printed_cv_shows_only_the_content_in_black_on_white(open_page, scheme):
     page = open_page("/cv/", scheme=scheme)
     page.emulate_media(media="print")
+    page.wait_for_timeout(500)  # let any colour transition of the screen styles finish
 
     for selector in (".masthead", ".sidebar", ".page__footer", ".js-theme-toggle", ".page__content .btn"):
         expect(page.locator(selector).first).to_be_hidden()
