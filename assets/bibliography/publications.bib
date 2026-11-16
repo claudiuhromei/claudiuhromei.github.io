@@ -1,5 +1,6 @@
 % Publications of Claudiu Daniel Hromei, rendered by jekyll-scholar on /publications/ and published as a download.
-% Extra fields used by _layouts/bib.html: `code` (repository URL) and `award`.
+% Extra fields used by _layouts/bib.html: `pdf` (direct PDF link), `code` (repository URL), `award`
+% and `abstract`.
 
 @inproceedings{hromei2026unitor,
   title     = {{UniTor} at {EVWSD-ITA}: Zero-Shot Visual Word Sense Disambiguation via Visual Question-Answering},
@@ -20,7 +21,9 @@
   pages     = {23747--23770},
   doi       = {10.18653/v1/2025.emnlp-main.1212},
   url       = {https://aclanthology.org/2025.emnlp-main.1212/},
-  code      = {https://github.com/crux82/GroundedSRL4HRI}
+  code      = {https://github.com/crux82/GroundedSRL4HRI},
+  pdf       = {https://aclanthology.org/2025.emnlp-main.1212.pdf},
+  abstract  = {Understanding natural language commands in situated Human-Robot Interaction (HRI) requires linking linguistic input to perceptual context. Traditional symbolic parsers lack the flexibility to operate in complex, dynamic environments. We introduce a novel Multimodal Grounded Semantic Role Labelling (G-SRL) framework that combines frame semantics with perceptual grounding, enabling robots to interpret commands via multimodal logical forms. Our approach leverages modern Vision Language Models (VLMs), which jointly process text and images, and is supported by an automated pipeline that generates high-quality training data. Structured command annotations are converted into photorealistic scenes via LLM-guided prompt engineering and diffusion models, then rigorously validated through object detection and visual question answering. The pipeline produces over 11,000 imagecommand pairs (3,500+ manually validated), while approaching the quality of manually curated datasets at significantly lower cost.}
 }
 
 @inproceedings{hromei2025training,
@@ -34,7 +37,20 @@
   pages     = {16266--16284},
   doi       = {10.18653/v1/2025.findings-acl.837},
   url       = {https://aclanthology.org/2025.findings-acl.837/},
-  code      = {https://github.com/crux82/MM-IGLU-Dialogues}
+  code      = {https://github.com/crux82/MM-IGLU-Dialogues},
+  pdf       = {https://aclanthology.org/2025.findings-acl.837.pdf},
+  abstract  = {Grounded natural language understanding in Human-Robot Interaction (HRI) requires integrating linguistic, visual, and world knowledge to ensure effective task execution. We propose an approach that enhances Multi-Modal Large Language Models (MLLMs) with a novel explicit dialogue planning phase, allowing robotic agents to systematically refine their understanding of ambiguous commands through structured clarification steps. This reduces hallucinations and improves task feasibility. To evaluate this approach, we introduce a novel dataset of over 1, 100 annotated dialogues in English and Italian, designed for fine-tuning and assessing Multi-Modal models in HRI scenarios. Experimental results show that dialogue planning improves response accuracy and quality, and contributes to cross-lingual generalisation, enabling models trained in one language to transfer effectively to another. To the best of our knowledge, this is the first application of structured, goal-driven, and explicit dialogue planning in Multi-Modal LLMs for grounded interaction.}
+}
+
+@phdthesis{hromei2025thesis,
+  title     = {Situated Natural Language Understanding in {HRI} via {LLMs}},
+  author    = {Hromei, Claudiu Daniel},
+  school    = {Universit{\`a} Campus Bio-Medico di Roma (National Ph.D. Programme in Artificial Intelligence)},
+  month     = jun,
+  year      = {2025},
+  url       = {https://hdl.handle.net/20.500.12610/95384},
+  pdf       = {https://www.iris.unicampus.it/bitstream/20.500.12610/95384/1/PhD_Hromei_ClaudiuDaniel.pdf},
+  abstract  = {This thesis focuses on advancing situated natural language understanding for human-robot interaction (HRI) through the use of large language models (LLMs), aiming to create robots that can understand, process, and respond to human commands in real-world environments. The work addresses key challenges in integrating multitasking capabilities, scaling models across multiple languages and modalities, including visual data, and adopting sustainable training techniques. The key contributions of this work include: • Integrating Multitask learning into LLMs: Methods enabling LLMs to integrate various problem-solving approaches are explored, initially handling tasks individually and then within a unified structure. This is demonstrated through the ExtremITA model, which participated in the EVALITA challenge on a diverse set of Italian-specific linguistic tasks. Following the exploration of multitasking capabilities, the thesis further investigates the application of LLMs for syntactic analysis across languages. • Neural transcoding for grammatical parsing based on LLMs: The thesis introduces U-DepPLLaMA, a model for universal dependency parsing using large autoregressive language models. This model achieves state-of-the-art results in dependency parsing across multiple languages and demonstrates the feasibility of scaling models using low-rank adapted parameters. It can handle multiple languages without taskspecific architectural modifications. • Grounding Language Understanding in HRI: Building on these capabilities, the thesis presents the GrUT approach, which interprets robotic commands in multiple languages, particularly English and Italian. This method combines frame semantics, a knowledge base, and lexical similarity to understand natural language commands. • Multimodal Interaction: The study incorporates multimodal models, with a particular focus on visual question answering (VQA) in Italian, using the GQA-it dataset. The MiniCPM-V model was optimised to improve its performance on the GQA-it dataset. • Developing the MM-IGLU Resource: The thesis introduces MM-IGLU, an interactive multimodal resource for grounded language understanding. It also presents MM-IGLU-it, an extension that supports the Italian language. These resources facilitate the training and evaluation of models in a multilingual context, grounded in the Minecraft-like world through environmental images. • Dialogue Systems in HRI: Preliminary work is presented on creating a dialogue resource on MM-IGLU, where a robot can ask follow-up questions to clarify commands, and evaluating the abilities of Multimodal models in effectively planning the interaction and solving the ambiguities of input commands. The thesis also provides a comprehensive evaluation of various models, using different, automatic or manual metrics. Error analyses are conducted to evaluate the strengths and limitations of the models. In summary, these contributions collectively pave the way for developing more efficient, versatile, and interactive robots capable of understanding complex commands, performing tasks in multilingual and multimodal contexts, and seamlessly integrating into real-world human environments.}
 }
 
 @inproceedings{passone2025artllama,
@@ -44,7 +60,8 @@
   year      = {2025},
   publisher = {The Eurographics Association},
   doi       = {10.2312/dh.20253113},
-  url       = {https://doi.org/10.2312/dh.20253113}
+  url       = {https://doi.org/10.2312/dh.20253113},
+  abstract  = {Performative Arts represent a compelling and underexplored domain for the application of Generative AI, given their rich conceptual complexity and cultural depth. This paper presents ArTLLaMA, a domain-adapted version of the LLaMA language model, designed to support natural language querying of ArTBase, the first national database of Italian theatres and theatre archives. We focus on the Text-to-SQL task: automatically translating user questions into executable SQL queries. Off-the-shelf models often fail in this setting due to a lack of domain knowledge and schema awareness. To bridge this gap, we propose a two-stage fine-tuning methodology: first, we train the model to internalize the Entity-Relationship (ER) schema of ArTBase; then, we fine-tune it on a curated set of over 800 natural language-SQL query pairs reflecting real use cases in the domain. Our results show that schema-informed fine-tuning significantly boosts accuracy, with the best model achieving over 70\% exact match andgenerating correct SQL even for complex queries involving multi-table joins and aggregations. Compared to general purpose models like ChatGPT, our approach yields more accurate, schema-compliant outputs. Beyond technical improvements, this work underscores the value of interdisciplinary collaboration: by embedding domain knowledge from the humanities into AI systems, we enable new forms of access, interaction, and understanding of cultural heritage data.}
 }
 
 @inproceedings{hromei2024canonica,
@@ -56,7 +73,9 @@
   address   = {Pisa, Italy},
   publisher = {CEUR Workshop Proceedings},
   pages     = {431--439},
-  url       = {https://aclanthology.org/2024.clicit-1.52/}
+  url       = {https://aclanthology.org/2024.clicit-1.52/},
+  pdf       = {https://aclanthology.org/2024.clicit-1.52.pdf},
+  abstract  = {This paper investigates the ability of Large Language Models (LLMs) to differentiate between canonical and non-canonical sentences in Italian, employing advanced neural architectures like LLaMA and its adaptations. Canonical sentences adhere to the standard Subject-Verb-Object (SVO) structure. We hypothesize that recent generative LLMs are influenced heavily by the English language, where non-canonical structures are very rare. Using the in-context learning technique, we probe these models and further fine-tune them for this specific task. Initial results indicate that these models continue to struggle with this task even after fine-tuning. Additionally, we introduce a test set comprising several hundred sentences from the poetry domain, which presents significant challenges for the canonical structure task.}
 }
 
 @inproceedings{borazio2024mmigluit,
@@ -69,7 +88,8 @@
   pages     = {64--78},
   doi       = {10.1007/978-3-031-80607-0_6},
   url       = {https://doi.org/10.1007/978-3-031-80607-0_6},
-  code      = {https://github.com/crux82/MM-IGLU-IT}
+  code      = {https://github.com/crux82/MM-IGLU-IT},
+  abstract  = {This paper explores Interactive Grounded Language Understanding (IGLU) within Human-Robot Interaction (HRI). Here, a robot interprets user commands related to its environment, determining if a specific command can be executed. When ambiguities or incomplete data arise, the robot asks relevant clarification questions. Current models, trained on English datasets, leverage multi-modal and end-to-end capabilities by fine-tuning architectures like LLaVA. These models combine a Visual Encoder, processing images of the environment, with Large Language Models (LLMs) encoding user requests, enabling agents to discern command executability and seek clarifications when necessary. While many LLMs are inherently multi-lingual, fine-tuning them on English-only datasets limits their application in other languages, such as Italian. To address this, we developed MM-IGLU-IT, a dataset for Multi-Modal Interactive Grounded Language Understanding in Italian. This dataset was created by automatically translating existing large-scale datasets and manually validating them for accuracy, resulting in over 6,800 command examples. Training a model like LLaVA, fine-tuned over a multi-lingual base model such as LLaMA2, allowed us to achieve comparable performance in both English and Italian. This resource is released on a dedicated GitHub page at https://github.com/crux82/MM-IGLU-IT and we hope it will advance multi-modal models in the Italian language, providing a valuable resource for ongoing research.}
 }
 
 @inproceedings{scaiella2024evaluating,
@@ -79,7 +99,9 @@
   month     = nov,
   year      = {2024},
   publisher = {CEUR Workshop Proceedings},
-  url       = {https://www.semanticscholar.org/paper/afa31d17d311964b761bc583c82b3a85f89e19a5}
+  url       = {https://ceur-ws.org/Vol-3877/paper8.pdf},
+  pdf       = {https://ceur-ws.org/Vol-3877/paper8.pdf},
+  abstract  = {Visual Question-Answering (VQA) is a complex multimodal task that requires integrating visual recognition and natural language understanding to answer questions about images. While significant progress has been made in English, resources and models for non-English languages, such as Italian, remain scarce. This paper addresses this gap by evaluating MiniCPM-V 2.6, a state-of-the-art multimodal Large Language Model, on GQA-it, the first large-scale Italian VQA dataset. The primary goal of this work is to investigate the performance of such models when applied off-the-shelf to this task and, if unsatisfactory, to explore how much they can improve with fine-tuning on Italian data. When applied off-the-shelf, MiniCPM-V 2.6 achieves an accuracy of 33.4\%. However, after fine-tuning it on the GQA-it dataset, the performance improves significantly, reaching a state-of-the-art accuracy of 59.4\%. These findings highlight the importance of language-specific adaptation in multilingual VQA tasks, especially for under-resourced languages like Italian. The trained model is released to the community on a dedicated Huggingface repository: https://huggingface.co/sag-uniroma2/MiniCPM-V-2\_6-gqa-it-finetuned.}
 }
 
 @inproceedings{bonetta2024nl4ai,
@@ -89,7 +111,9 @@
   month     = nov,
   year      = {2024},
   publisher = {CEUR Workshop Proceedings},
-  url       = {https://www.semanticscholar.org/paper/4b3fd5dbded43f333bc12f83fbd4b731b2eb032d}
+  url       = {https://ceur-ws.org/Vol-3877/overview.pdf},
+  pdf       = {https://ceur-ws.org/Vol-3877/overview.pdf},
+  abstract  = {The Natural Language for Artificial Intelligence (NL4AI) workshop serves as a platform to explore the area situated at the intersection between Natural Language Processing (NLP) and Artificial Intelligence (AI), with a special emphasis on recent activities carried out in both fields in Italy. The eighth edition of the workshop had 18 submissions, of which 16 were accepted. The submissions span a broad spectrum of topics, encompassing foundational NLP research, applied NLP, and works that bridge the realms of NLP and AI. This edition exhibited a strong international presence, featuring contributions from authors representing 6 countries. The submissions also reflect a diversity of languages (e.g., English, Italian) and modalities (e.g., text, vision), underscoring the workshop's commitment to inclusivity and comprehensive exploration.}
 }
 
 @inproceedings{hromei2024emotion,
@@ -101,7 +125,8 @@
   publisher = {Springer Nature Switzerland},
   pages     = {76--94},
   doi       = {10.1007/978-3-031-66705-3_6},
-  url       = {https://doi.org/10.1007/978-3-031-66705-3_6}
+  url       = {https://doi.org/10.1007/978-3-031-66705-3_6},
+  abstract  = {This paper is the first step of an expansive ongoing initiative centered on automated film analysis through an ecocritical lens. Ecocriticism, an interdisciplinary field, delves into environmental themes within cultural works, broadening the scope of humanities’ focus on representation issues. Our objective is to pioneer a method for automated, dependable analysis of audiovisual narratives within fictional feature films, exploring the interplay between human emotions exhibited by characters and their surrounding environments. Using the acclaimed Italian crime/noir film, Dogman (2018), as a case study, we have constructed a modular pipeline integrating Facial Recognition and Emotion Detection technologies to scrutinize the emotional dynamics of the film’s two main characters. Our approach facilitates a comprehensive comparison over the film’s duration, enabling human analysts to future insights into the nuanced relationship between characters’ emotional states and the environmental contexts in which they unfold. Preliminary findings indicate promising outcomes from our pipeline, laying a solid foundation for subsequent film analyses. These results not only underscore the viability of automated methods in film studies but also offer a substantive starting point for deeper explorations into the complex interconnections between human emotions and cinematic environments.}
 }
 
 @inproceedings{hromei2024mmiglu,
@@ -114,7 +139,9 @@
   publisher = {ELRA and ICCL},
   pages     = {11440--11451},
   url       = {https://aclanthology.org/2024.lrec-main.1000/},
-  code      = {https://github.com/crux82/MM-IGLU}
+  code      = {https://github.com/crux82/MM-IGLU},
+  pdf       = {https://aclanthology.org/2024.lrec-main.1000.pdf},
+  abstract  = {This paper explores Interactive Grounded Language Understanding (IGLU) challenges within Human-Robot Interaction (HRI). In this setting, a robot interprets user commands related to its environment, aiming to discern whether a specific command can be executed. If faced with ambiguities or incomplete data, the robot poses relevant clarification questions. Drawing from the NeurIPS 2022 IGLU competition, we enrich the dataset by introducing our multi-modal data and natural language descriptions in MM-IGLU: Multi-Modal Interactive Grounded Language Understanding. Utilizing a BART-based model that integrates the user's statement with the environment's description, and a cutting-edge Multi-Modal Large Language Model that merges both visual and textual data, we offer a valuable resource for ongoing research in the domain. Additionally, we discuss the evaluation methods for such tasks, highlighting potential limitations imposed by traditional string-match-based evaluations on this intricate multi-modal challenge. Moreover, we provide an evaluation benchmark based on human judgment to address the limits and capabilities of such baseline models. This resource is released on a dedicated GitHub repository at https://github.com/crux82/MM-IGLU.}
 }
 
 @article{hromei2024udeppllama,
@@ -126,7 +153,8 @@
   year      = {2024},
   doi       = {10.4000/125nm},
   url       = {https://doi.org/10.4000/125nm},
-  code      = {https://github.com/crux82/u-deppllama}
+  code      = {https://github.com/crux82/u-deppllama},
+  abstract  = {This paper investigates the rapidly advancing domain of Large Language Models (LLMs) and their growing potential in various fields. A central focus is the exploration of LLMs, e.g., LLaMA, as powerful tools for modeling and representing linguistic information, especially in the realm of syntax. We aim to evaluate the ability of these models to encode syntactic information, especially when explicitly supplied, through fine-tuning processes. Traditionally, Dependency Parsing has relied on specific techniques and dedicated architectures. Our research shifts this approach, conceptualizing it as a sequence-to-sequence task where Language Models interpret and transform syntax into bracketed structures that reflect dependency graphs. We introduce U-DepPLLaMA (Universal Dependency Parsing via auto-regressive LLMs based on LLaMA), a novel architecture optimized for multilingual, end-to-end Dependency Parsing. Our experimental evaluation, across 50 datasets in 26 languages from the Universal Dependency Treebank, shows that LLMs can be effectively trained for dependency parsing without the need for task-specific architectures. The results are on par with current state-of-the-art methods and demonstrate resilience across varying sentence complexities and lengths.}
 }
 
 @inproceedings{hromei2023scaling,
@@ -138,7 +166,8 @@
   publisher = {Springer Nature Switzerland},
   pages     = {172--186},
   doi       = {10.1007/978-3-031-47546-7_12},
-  url       = {https://doi.org/10.1007/978-3-031-47546-7_12}
+  url       = {https://doi.org/10.1007/978-3-031-47546-7_12},
+  abstract  = {This paper explores the potential of utilizing a unified neural model to tackle multiple and complex semantic processing tasks in the Italian language. We applied a state-of-the-art instruction-tuned Decoder-only Large Language Model to the recent EVALITA 2023 [ 17 ] challenge, which encompassed 13 different tasks and 22 subtasks across diverse semantic dimensions, such as Affect Detection, Authorship Analysis, Computational Ethics, Named Entity Recognition, Information Extraction, and Discourse Coherence. Our approach focuses on representing tasks using natural language instructions, for which prompts to the model are designed able to define the process as well as the desired responses. Notably, this single neural model achieved first place in 41\% of the subtasks and demonstrated top-three performance in 64\% of them. A dedicated experiment was also conducted to investigate the degree of linguistic generalization achieved by the LLM specifically, through instruction-tuning it with limited sets of training data. Results suggest that instruction-tuning is still required to capture dependencies between input and output even in such LLMs.}
 }
 
 @inproceedings{hromei2023endtoend,
@@ -151,7 +180,9 @@
   publisher = {CEUR Workshop Proceedings},
   pages     = {236--242},
   url       = {https://aclanthology.org/2023.clicit-1.30/},
-  code      = {https://github.com/crux82/u-deppllama}
+  code      = {https://github.com/crux82/u-deppllama},
+  pdf       = {https://aclanthology.org/2023.clicit-1.30.pdf},
+  abstract  = {This paper presents a straightforward application of Large Language Models (LLMs) for Dependency Parsing. The parsing process is approached as a sequence-to-sequence task, where a language model takes a sentence as input and generates a bracketed form, allowing for the deterministic derivation of the dependency graph. The experimental evaluation explores the feasibility of utilizing LLMs for this purpose, while also assessing the process’s sustainability with modest parameter sizes (training on a single GPU with limited resources) and investigating the impact of incorporating multilingual data during training. The results demonstrate that an end-to-end dependency parsing process can indeed be formulated using a task-agnostic architecture.}
 }
 
 @inproceedings{hromei2023iglu,
@@ -161,7 +192,9 @@
   month     = nov,
   year      = {2023},
   publisher = {CEUR Workshop Proceedings},
-  url       = {https://www.semanticscholar.org/paper/716b35e734574fe55a1b3b171ded2a675f14c28d}
+  url       = {https://ceur-ws.org/Vol-3551/paper14.pdf},
+  pdf       = {https://ceur-ws.org/Vol-3551/paper14.pdf},
+  abstract  = {This paper delves into Interactive Grounded Language Understanding (IGLU) problems within the context of Human-Robot Interaction (HRI), where a robot interprets user commands about the environment. In this scenario, the robot’s objective is to determine if a given command can be executed within the environment. If ambiguity or incomplete information is detected, the robot generates pertinent clarification questions. Drawing inspiration from the GrUT framework and employing a BART-based model that combines the user’s utterance with the description of the environment, this study evaluates the applicability of the GrUT approach in an end-to-end Grounded QG task. The assessment of question quality is conducted through both automated metrics and human evaluation. While the results highlight the proficiency of the BART-based method in question generation, challenges arise due to dataset limitations from the IGLU competition at NeurIPS 2022. Nevertheless, this research provides valuable insights into BART’s generative capabilities in the realm of HRI.}
 }
 
 @inproceedings{hromei2023extremita,
@@ -175,17 +208,22 @@
   pages     = {11--19},
   url       = {https://aclanthology.org/2023.evalita-1.4/},
   code      = {https://github.com/crux82/ExtremITA},
-  award     = {Best Paper Award}
+  award     = {Best Paper Award},
+  pdf       = {https://aclanthology.org/2023.evalita-1.4.pdf},
+  abstract  = {This paper explores the potential application of a monolithic neural model for all tasks in EVALITA 2023. We evaluated two models: extremIT5, an encoder-decoder model, and extremITLLaMA an instruction-tuned Decoder-only Large Language Model, specifically designed for handling Italian instructions. Our approach revolves around representing tasks in natural language, where we provide instructions to the model using prompts that define the expected responses. Remarkably, our best-performing model achieved first place in 41\% of the subtasks and showcased top-three performance in 64\%. These subtasks encompass various semantic dimensions, including Affect Detection, Authorship Analysis, Computational Ethics, Named Entity Recognition, Information Extraction, and Discourse Coherence.}
 }
 
 @article{tamantini2023integrating,
   title     = {Integrating Physical and Cognitive Interaction Capabilities in a Robot-Aided Rehabilitation Platform},
   author    = {Tamantini, Christian and Scotto di Luzio, Francesco and Hromei, Claudiu Daniel and Cristofori, Lorenzo and Croce, Danilo and Cammisa, Marco and Cristofaro, Arcangela and Marabello, Maria Vittoria and Basili, Roberto and Zollo, Loredana},
   journal   = {IEEE Systems Journal},
+  volume    = {17},
+  number    = {4},
   year      = {2023},
-  pages     = {1--12},
+  pages     = {6516--6527},
   doi       = {10.1109/JSYST.2023.3317504},
-  url       = {https://doi.org/10.1109/JSYST.2023.3317504}
+  url       = {https://doi.org/10.1109/JSYST.2023.3317504},
+  abstract  = {The communication channels between physiotherapists and patients are many and varied. Rehabilitation robots are able to deliver intensive treatments and improve the patient's quality of life. However, rehabilitation robots in the literature do not integrate physical manipulation with natural verbal communication yet. This article proposes an innovative integrated system for motor rehabilitation based on the combination of physical and cognitive components to emulate the natural interaction between physiotherapists and patients. The proposed approach was validated in a laboratory setting with 20 healthy subjects. The cognitive system's ability to interact linguistically as well as the participants' kinematic performance and the emotional impact generated by two different robotic systems were assessed. The former integrates advanced linguistic capabilities and the latter lacks any verbal communication. The results showed that the presence of linguistic interaction promotes the quality of interaction, leading to improvements both in the execution of movements and in emotional terms.}
 }
 
 @article{hromei2023grounding,
@@ -198,7 +236,8 @@
   pages     = {173--191},
   doi       = {10.3233/IA-230012},
   url       = {https://doi.org/10.3233/IA-230012},
-  code      = {https://github.com/crux82/grut}
+  code      = {https://github.com/crux82/grut},
+  abstract  = {Situated natural language interactions between humans and robots are strictly necessary for complex applications: communication here implies the reference to the environment shared between a user and the robot. This paper proposes a transformer-based architecture that supports the integration of spatial information (as logical representation) about a semantic map of the environment and the input utterances. The generated interpretation is a logical form of the command that makes references to the state of the world through a single end-to-end process, stimulated at each interaction by an explicit linguistic description of the environment. In this specific work, the end-to-end capability of the targeted transformer is studied in light of its multilingual applications where the robot can be queried in different natural languages. The obtained experimental results confirm the applicability of transformers to grounded human-robotic interaction, with benefits in terms of both portability of the approach across domains and effectiveness in terms of reachable accuracy. Moreover, language-specific processing chains are shown to be preferable to large-scale multilingual models for their better trade-off between accuracy and complexity. Overall, the proposed architecture outperforms previous approaches and paves the way for sustainable multilingual architectures.}
 }
 
 @inproceedings{hromei2022embedding,
@@ -210,7 +249,8 @@
   publisher = {Springer International Publishing},
   pages     = {472--485},
   doi       = {10.1007/978-3-031-27181-6_33},
-  url       = {https://doi.org/10.1007/978-3-031-27181-6_33}
+  url       = {https://doi.org/10.1007/978-3-031-27181-6_33},
+  abstract  = {Natural Language interactions between humans and robots are meant to be situated, in the sense that both the user and the robot can access and make reference to the shared environment. Contextual knowledge plays thus a key role in the solution of inherent ambiguities in interpretation tasks, such as Grounded Semantic Role Labeling (GSRL). Explicit representations for the context (i.e. the map description of the surroundings) are crucial and the possibility of injecting such information in the training stages of semantic interpreters is very appealing. In this paper, we propose to make a sequence-to-sequence model for GSRL, thus eliminating the traditional cascade of tasks and effectively linking real-world entities with their identifiers, that is sensitive to map information in form of linguistic descriptions. The corresponding generation process, based on BART, achieves results competitive with the state-of-the-art on the GSRL task.}
 }
 
 @inproceedings{hromei2022grounding,
@@ -220,9 +260,11 @@
   month     = nov,
   year      = {2022},
   publisher = {CEUR Workshop Proceedings},
-  url       = {https://www.semanticscholar.org/paper/07c5268884c2b7e069b0c57bbf5aeb242740fdb0},
+  url       = {https://ceur-ws.org/Vol-3287/paper5.pdf},
   code      = {https://github.com/crux82/grut},
-  award     = {Best Paper Award}
+  award     = {Best Paper Award},
+  pdf       = {https://ceur-ws.org/Vol-3287/paper5.pdf},
+  abstract  = {Natural language interactions between humans and robots are intended to be situated in the sense that both user and robot can access and refer to the shared environment. Contextual knowledge plays a key role in resolving the ambiguities inherent in interpretation tasks. In addition, we expect the interpretation produced to be well-founded, e.g., that all mentions of entities in the environment (as perceived by the robot) are correctly grounded. In this paper, we propose the application of a transformer-based architecture that combines the input utterance with a linguistic description of the environment to produce interpretations and references to the environment in an end-to-end fashion. Experimental results demonstrate the robustness of the proposed methodology, overcoming previous approaches in which linguistic interpretation and grounding are composed of possible complex processing chains.}
 }
 
 @inproceedings{cristofori2021heal9000,
@@ -232,5 +274,7 @@
   month     = nov,
   year      = {2021},
   publisher = {CEUR Workshop Proceedings},
-  url       = {https://www.semanticscholar.org/paper/c28bd075a70e83dd560548b29237b02ee9919a32}
+  url       = {https://ceur-ws.org/Vol-3060/paper-4.pdf},
+  pdf       = {https://ceur-ws.org/Vol-3060/paper-4.pdf},
+  abstract  = {AI applications to health related processes include the adoption of robotic platforms for rehabilitation, aiming at the delivery of highly intensive, repeatable and accurate motion therapies and able to constantly monitor the patient and provide the suitable assistance levels. However, a comprehensive approach to robot-aided rehabilitation requires also a social level of interaction with the patient that implies cognitive modeling and linguistic communication. It is worth noticing that robotic platforms providing both physical and cognitive support to patients have not been proposed so far. In the HeAL9000 project an intelligent robot for rehabilitation of patients affected by musculoskeletal disorders is proposed with cognitive and linguistic abilities. It relies strongly on machine learning technologies whose aim is to support cost effective engineering of the platform as well as evolving capabilities across time. In the paper early experimental evidence is acquired through quantitative evaluation.}
 }

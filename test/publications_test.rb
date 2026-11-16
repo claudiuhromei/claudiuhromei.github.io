@@ -46,8 +46,52 @@ class PublicationsTest < Minitest::Test
 
   def test_citations_do_not_spell_out_urls
     @entries.each do |entry|
-      refute_match(%r{https?://}, entry.text, "raw URL in: #{entry.text.strip[0, 80]}")
+      reference = entry.at_css(".publication__reference").text
+      refute_match(%r{https?://}, reference, "raw URL in: #{reference.strip[0, 80]}")
     end
+  end
+
+  def test_paper_link_goes_to_the_pdf_when_the_entry_has_one
+    bibtex_entries.each do |key, fields|
+      next unless fields["pdf"]
+
+      assert_equal fields["pdf"], rendered(key).at_css(".publication__links > a")["href"]
+    end
+  end
+
+  def test_abstract_is_shown_for_every_entry_that_has_one
+    with_abstract = bibtex_entries.select { |_key, fields| fields["abstract"] }
+    assert_operator with_abstract.size, :>=, 20
+    with_abstract.each_key do |key|
+      abstract = rendered(key).at_css("details.publication__abstract p")
+      refute_nil abstract, "abstract not rendered for #{key}"
+      assert_operator abstract.text.strip.length, :>, 200
+    end
+    assert_equal with_abstract.size, @content.css("details.publication__abstract").size
+  end
+
+  def test_abstracts_have_no_leftover_latex_escapes
+    @content.css("details.publication__abstract p").each do |abstract|
+      refute_match(/\\[&%$#_]|[{}]/, abstract.text)
+    end
+  end
+
+  def test_every_entry_can_be_cited_as_bibtex_without_site_only_fields
+    bibtex_entries.each_key do |key|
+      bibtex = rendered(key).at_css("details.publication__cite code")
+      refute_nil bibtex, "BibTeX not rendered for #{key}"
+      assert_match(/\A@\w+\{#{Regexp.escape(key)},/, bibtex.text.strip)
+      assert_includes bibtex.text, "author = {"
+      %w[abstract pdf code award].each do |field|
+        refute_match(/^\s*#{field}\s*=/, bibtex.text, "#{field} must not appear in the BibTeX of #{key}")
+      end
+    end
+  end
+
+  def test_phd_thesis_is_listed_with_its_pdf
+    thesis = rendered("hromei2025thesis")
+    assert_includes thesis.text, "Situated Natural Language Understanding in HRI via LLMs"
+    assert thesis.at_css(".publication__links > a")["href"].end_with?(".pdf")
   end
 
   def test_best_paper_awards_are_shown
@@ -66,6 +110,20 @@ class PublicationsTest < Minitest::Test
   private
 
   def bibtex_keys
-    File.read(BIB_PATH, encoding: "utf-8").scan(/^@\w+\{([^,]+),/).flatten
+    bibtex_entries.keys
+  end
+
+  # { key => { field => value } } for the single-line fields of every entry in the BibTeX source.
+  def bibtex_entries
+    @bibtex_entries ||= File.read(BIB_PATH, encoding: "utf-8").scan(/^@\w+\{([^,]+),(.*?)^\}/m).to_h do |key, body|
+      [key, body.scan(/^\s*(\w+)\s*=\s*\{(.*)\},?$/).to_h]
+    end
+  end
+
+  # Rendered entry for a BibTeX key (the "Cite" block starts with it).
+  def rendered(key)
+    entry = @entries.find { |candidate| candidate.at_css("details.publication__cite code").text.include?("{#{key},") }
+    refute_nil entry, "entry #{key} not rendered"
+    entry
   end
 end

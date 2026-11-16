@@ -1,13 +1,31 @@
 ---
 # Template for one bibliography entry (jekyll-scholar `bibliography_template`).
-# The URL or DOI that the citation style prints in full is dropped in favour of the "Paper" link.
+# The URL or DOI that the citation style prints in full is dropped in favour of the "Paper" link,
+# which goes to the PDF when the entry has one.
 ---
 {%- assign doi_url = "https://doi.org/" | append: entry.doi -%}
-<span class="publication">
-  {{ reference | remove: doi_url | remove: entry.url | replace: "Hromei, C. D.", "<strong>Hromei, C. D.</strong>" }}
-  {%- if entry.award %} <strong class="publication__award">{{ entry.award }}</strong>{% endif %}
-  <span class="publication__links">
-    {%- if entry.url %} <a href="{{ entry.url }}">Paper</a>{% endif %}
-    {%- if entry.code %} · <a href="{{ entry.code }}">Code</a>{% endif %}
+{%- assign paper_url = entry.pdf | default: entry.url -%}
+<div class="publication">
+  <span class="publication__reference">
+    {{ reference | remove: doi_url | remove: entry.url | replace: "Hromei, C. D.", "<strong>Hromei, C. D.</strong>" }}
+    {%- if entry.award %} <strong class="publication__award">{{ entry.award }}</strong>{% endif %}
   </span>
-</span>
+  <div class="publication__links">
+    {%- if paper_url %}
+    <a href="{{ paper_url }}">Paper</a>
+    {%- endif %}
+    {%- if entry.code %}
+    <a href="{{ entry.code }}">Code</a>
+    {%- endif %}
+    {%- if entry.abstract %}
+    <details class="publication__abstract">
+      <summary>Abstract</summary>
+      <p>{{ entry.abstract }}</p>
+    </details>
+    {%- endif %}
+    <details class="publication__cite">
+      <summary>Cite</summary>
+      <pre><code>{{ entry.bibtex }}</code></pre>
+    </details>
+  </div>
+</div>
