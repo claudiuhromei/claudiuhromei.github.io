@@ -1,5 +1,5 @@
 ---
-title: "Service & Awards"
+title: "Awards & Service"
 permalink: /service/
 description: "Awards and academic service of Claudiu Daniel Hromei."
 ---
