@@ -36,3 +36,30 @@ ol.bibliography {
   color: $muted-text-color;
   font-size: $type-size-6;
 }
+
+// Light/dark switch, fixed to the bottom-right corner (see assets/js/theme.js).
+.theme-toggle {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 30;
+  width: 2.75em;
+  height: 2.75em;
+  padding: 0;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  background-color: $background-color;
+  color: $text-color;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+}
