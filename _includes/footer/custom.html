@@ -1,4 +1,8 @@
 <!-- Site-specific snippets at the end of <body> (included by the theme's default layout). -->
+<!-- Hidden until assets/js/theme.js enables it, so it never shows up without JavaScript. -->
+<button type="button" class="theme-toggle js-theme-toggle" aria-label="Switch colour theme" hidden>
+  <i class="fas fa-fw fa-moon" aria-hidden="true"></i>
+</button>
 <script src="{{ '/assets/js/contact.js' | relative_url }}" defer></script>
 {%- assign goatcounter_code = site.goatcounter_code | default: "" | strip -%}
 {%- if goatcounter_code != "" and jekyll.environment == "production" %}
