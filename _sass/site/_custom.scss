@@ -66,6 +66,30 @@
   }
 }
 
+// Header and page share the same vertical edges on wide screens: the site title takes the width of the
+// author sidebar, so the navigation starts where the page content starts, and the content runs up to
+// the right edge of the header instead of leaving the theme's empty right-hand column.
+// (Navigation links have a 1rem margin on each side, hence the 2rem.)
+.masthead .visible-links {
+  justify-content: flex-start;
+}
+
+@include breakpoint($large) {
+  .masthead .site-title {
+    min-width: calc(#{$right-sidebar-width-narrow} - 2rem);
+  }
+
+  .page {
+    padding-inline-end: 0;
+  }
+}
+
+@include breakpoint($x-large) {
+  .masthead .site-title {
+    min-width: calc(#{$right-sidebar-width} - 2rem);
+  }
+}
+
 .btn--primary,
 .btn--primary:visited,
 .btn--primary:hover {
