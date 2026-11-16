@@ -116,8 +116,32 @@ ol.bibliography {
 }
 
 .publication__links {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1em;
+  align-items: baseline;
   font-size: $type-size-6;
+
+  summary {
+    color: $link-color;
+    cursor: pointer;
+  }
+
+  // An open "Abstract" or "Cite" takes its own full-width row below the links.
+  details[open] {
+    flex-basis: 100%;
+    order: 1;
+  }
+
+  p,
+  pre {
+    margin: 0.5em 0;
+  }
+
+  pre {
+    overflow-x: auto;
+    white-space: pre;
+  }
 }
 
 // News lists (home page and /news/)
