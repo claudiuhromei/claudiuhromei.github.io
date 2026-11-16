@@ -1,0 +1,12 @@
+{%- comment -%}
+  Email link for the author sidebar. The address is never written in the HTML: its two halves are stored
+  reversed in data attributes and assembled by assets/js/contact.js when the visitor clicks the button.
+{%- endcomment -%}
+{%- assign contact = site.author.contact -%}
+{%- if contact.user_reversed and contact.domain_reversed %}
+<li>
+  <button type="button" class="contact-button js-contact" data-user="{{ contact.user_reversed }}" data-domain="{{ contact.domain_reversed }}">
+    <i class="fas fa-fw fa-envelope" aria-hidden="true"></i><span class="label">Email</span>
+  </button>
+</li>
+{%- endif %}

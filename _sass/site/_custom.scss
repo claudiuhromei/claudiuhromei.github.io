@@ -23,3 +23,30 @@ ol.bibliography {
   display: block;
   font-size: $type-size-6;
 }
+
+// News lists (home page and /news/)
+.news-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.news-list__date {
+  display: inline-block;
+  min-width: 5.5em;
+  color: $muted-text-color;
+  font-size: $type-size-6;
+}
+
+// Email button in the author sidebar: looks like the other profile links.
+.contact-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

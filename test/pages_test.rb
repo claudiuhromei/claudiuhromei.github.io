@@ -13,7 +13,8 @@ class PagesTest < Minitest::Test
     "/publications/" => ["Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
     "/teaching/" => ["Teaching & Talks", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
     "/service/" => ["Service & Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
-    "/cv/" => ["CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]]
+    "/cv/" => ["CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]],
+    "/news/" => ["News", ["Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
   }.freeze
 
   PAGES.each do |permalink, (title, phrases)|

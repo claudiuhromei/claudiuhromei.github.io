@@ -1,0 +1,6 @@
+<!-- Site-specific snippets at the end of <body> (included by the theme's default layout). -->
+<script src="{{ '/assets/js/contact.js' | relative_url }}" defer></script>
+{%- assign goatcounter_code = site.goatcounter_code | default: "" | strip -%}
+{%- if goatcounter_code != "" and jekyll.environment == "production" %}
+<script data-goatcounter="https://{{ goatcounter_code }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{%- endif %}
