@@ -18,6 +18,26 @@ finance sector, and a volunteer postdoctoral researcher at the **University of R
 about my [experience]({{ '/experience/' | relative_url }}), my [projects]({{ '/projects/' | relative_url }}) and
 my [publications]({{ '/publications/' | relative_url }}).
 
+## Highlights
+
+<ul class="highlights">
+  {%- for item in site.data.highlights %}
+  <li class="highlights__item">
+    <a class="highlights__link" href="{{ item.url | relative_url }}">
+      <span class="highlights__figure">{{ item.figure }}</span>
+      <span class="highlights__title">{{ item.title }}</span>
+      <span class="highlights__text">{{ item.text }}</span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+
+## Selected publications
+
+{% bibliography --query @*[selected=true] --group_by none %}
+
+[All publications]({{ '/publications/' | relative_url }})
+
 ## News
 
 <ul class="news-list">
