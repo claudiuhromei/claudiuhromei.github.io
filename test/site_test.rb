@@ -57,5 +57,6 @@ class SiteTest < Minitest::Test
     end
     refute Dir.exist?(site_path("test")), "test/ must not be published"
     refute Dir.exist?(site_path("tools")), "tools/ must not be published"
+    refute Dir.exist?(site_path("browser_tests")), "browser_tests/ must not be published"
   end
 end

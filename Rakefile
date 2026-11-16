@@ -20,6 +20,11 @@ namespace :test do
     sh "uv run --no-project --with pytest --with pymupdf pytest tools --quiet"
   end
 
+  desc "Run the browser tests in browser_tests/ against the built site (needs uv and a Chromium browser)"
+  task browser: :build do
+    sh "uv run --no-project --with-requirements browser_tests/requirements.txt pytest browser_tests --quiet"
+  end
+
   Rake::TestTask.new(:unit) do |t|
     t.libs << "test"
     t.test_files = FileList["test/**/*_test.rb"]
@@ -41,6 +46,6 @@ namespace :test do
 end
 
 desc "Build the site and run all tests (set CHECK_EXTERNAL=1 to also check external links)"
-task test: %w[test:unit test:links test:tools]
+task test: %w[test:unit test:links test:tools test:browser]
 
 task default: :test

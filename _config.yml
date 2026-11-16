@@ -92,6 +92,7 @@ exclude:
   - roadmap.md
   - test
   - tools
+  - browser_tests
   - vendor
 
 # Conversion

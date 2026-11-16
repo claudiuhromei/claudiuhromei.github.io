@@ -25,6 +25,9 @@ jobs:
 
       - uses: astral-sh/setup-uv@v5 # Python helper scripts in tools/
 
+      - name: Install the browser for the browser tests
+        run: uv run --no-project --with-requirements browser_tests/requirements.txt playwright install --with-deps chromium
+
       - name: Build and test
         run: bundle exec rake test
 
