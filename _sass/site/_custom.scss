@@ -1,4 +1,76 @@
 // Site-specific styles, compiled into both the light and the dark stylesheet.
+// $site-accent and $site-on-accent are set by each stylesheet (assets/css/main*.scss).
+
+// Header in the accent colour. It also sits above the author sidebar: the theme gives both the same
+// z-index, which let the sidebar's "Follow" button show through the open navigation menu on phones.
+.masthead {
+  z-index: 30;
+  border-bottom-color: $site-accent;
+  background-color: $site-accent;
+
+  .greedy-nav {
+    background: transparent;
+  }
+
+  // When the navigation menu is open the theme dims the whole page with a translucent veil, which
+  // would wash out the header. Layers inside the header, bottom to top: veil (1), accent strip (2),
+  // header content and menu (3). The <nav> must not form its own stacking context for this to work.
+  .masthead__inner-wrap nav {
+    z-index: auto;
+  }
+
+  .greedy-nav__toggle::before {
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-color: $site-accent;
+    pointer-events: none;
+  }
+
+  .site-title,
+  .visible-links,
+  .hidden-links,
+  .navicon {
+    z-index: 3;
+  }
+
+  .site-title,
+  .visible-links {
+    position: relative;
+  }
+
+  .site-title,
+  .visible-links a {
+    color: $site-on-accent;
+
+    &:hover {
+      color: rgba($site-on-accent, 0.8);
+    }
+  }
+
+  .visible-links a::before {
+    background: $site-on-accent;
+  }
+
+  .greedy-nav__toggle {
+    .navicon::before,
+    .navicon::after,
+    &:not(.close) .navicon {
+      background: $site-on-accent;
+    }
+  }
+}
+
+.btn--primary,
+.btn--primary:visited,
+.btn--primary:hover {
+  color: $site-on-accent;
+}
 
 // Publications list (see _layouts/bib.html)
 ol.bibliography {
@@ -42,7 +114,7 @@ ol.bibliography {
   position: fixed;
   right: 1em;
   bottom: 1em;
-  z-index: 30;
+  z-index: 25;
   width: 2.75em;
   height: 2.75em;
   padding: 0;
