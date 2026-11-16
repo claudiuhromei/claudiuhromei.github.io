@@ -4,6 +4,8 @@ permalink: /cv/
 description: "Curriculum vitae of Claudiu Daniel Hromei: summary, skills, certifications, experience and education."
 ---
 
+[Download the CV as PDF]({{ '/assets/files/Claudiu_Daniel_Hromei_CV.pdf' | relative_url }}){: .btn .btn--primary}
+
 ## Summary
 
 Senior AI Scientist and Ph.D. in Artificial Intelligence, with over five years of experience bridging
@@ -41,7 +43,7 @@ Details are on the [Experience]({{ '/experience/' | relative_url }}) page.
 | Period | Degree | Institution |
 |--------|--------|-------------|
 | Nov 2021 – June 2025 | Ph.D. in Artificial Intelligence | National Ph.D. Programme in AI, University of Rome Tor Vergata & Campus Bio-Medico of Rome |
-| 2018 – 2021 | M.Sc. in Computer Science (Artificial Intelligence), 110/110 cum laude | |
+| 2018 – 2021 | M.Sc. in Computer Science (Artificial Intelligence), 110/110 cum laude | University of Rome Tor Vergata |
 
 ## More
 

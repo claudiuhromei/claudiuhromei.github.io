@@ -25,3 +25,6 @@ Thumbs.db
 CLAUDE.md
 roadmap.md
 .claude/
+
+# Python caches
+.pytest_cache/

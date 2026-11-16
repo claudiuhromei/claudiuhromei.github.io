@@ -32,6 +32,7 @@ social:
     - "https://www.linkedin.com/in/cdhromei/"
     - "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
     - "https://orcid.org/0009-0000-8204-5023"
+    - "https://dblp.org/pid/309/5387.html"
     - "https://www.semanticscholar.org/author/2148228904"
     - "https://aclanthology.org/people/claudiu-daniel-hromei/"
     - "https://huggingface.co/cdh"
@@ -45,6 +46,7 @@ author:
   name: "Claudiu Daniel Hromei"
   bio: "Senior AI Scientist · AI Researcher · NLP & LLMs"
   location: "Rome, Italy"
+  avatar: "/assets/images/profile.jpg"
   # Email, never in plain text: user and domain parts written backwards, joined by assets/js/contact.js.
   contact:
     user_reversed: "iemorh.dc"
@@ -59,6 +61,9 @@ author:
     - label: "ORCID"
       icon: "fab fa-fw fa-orcid"
       url: "https://orcid.org/0009-0000-8204-5023"
+    - label: "DBLP"
+      icon: "fas fa-fw fa-database"
+      url: "https://dblp.org/pid/309/5387.html"
     - label: "Semantic Scholar"
       icon: "fas fa-fw fa-book-open"
       url: "https://www.semanticscholar.org/author/2148228904"
@@ -86,6 +91,7 @@ exclude:
   - README.md
   - roadmap.md
   - test
+  - tools
   - vendor
 
 # Conversion

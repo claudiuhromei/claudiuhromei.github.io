@@ -56,6 +56,6 @@ of Rome*
 
 ### M.Sc. in Computer Science (Artificial Intelligence)
 
-*2018 – 2021*
+*2018 – 2021 · University of Rome Tor Vergata*
 
 - **Grade:** 110/110 cum laude. Specialised in AI, deep learning and advanced algorithms.

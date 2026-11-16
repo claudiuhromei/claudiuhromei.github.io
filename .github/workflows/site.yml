@@ -23,6 +23,8 @@ jobs:
         with:
           bundler-cache: true # runs `bundle install` and caches gems
 
+      - uses: astral-sh/setup-uv@v5 # Python helper scripts in tools/
+
       - name: Build and test
         run: bundle exec rake test
 

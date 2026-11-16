@@ -8,7 +8,7 @@ class PagesTest < Minitest::Test
 
   # permalink => [navigation title, phrases the page must contain]
   PAGES = {
-    "/experience/" => ["Experience", ["BIP", "University of Rome Tor Vergata", "REVEAL SRL", "Ph.D. in Artificial Intelligence"]],
+    "/experience/" => ["Experience", ["BIP", "REVEAL SRL", "Ph.D. in Artificial Intelligence", "2018 – 2021 · University of Rome Tor Vergata"]],
     "/projects/" => ["Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
     "/publications/" => ["Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
     "/teaching/" => ["Teaching & Talks", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
@@ -56,6 +56,7 @@ class PagesTest < Minitest::Test
     assert_includes hrefs, "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
     assert_includes hrefs, "https://huggingface.co/cdh"
     assert_includes hrefs, "https://orcid.org/0009-0000-8204-5023"
+    assert_includes hrefs, "https://dblp.org/pid/309/5387.html"
     assert_includes hrefs, "https://www.semanticscholar.org/author/2148228904"
     assert_includes hrefs, "https://aclanthology.org/people/claudiu-daniel-hromei/"
   end
