@@ -4,6 +4,12 @@
 
 @charset "utf-8";
 
+// Accent of the light theme: a deep green. It tints the header, links and primary buttons.
+$site-accent: #006b3f;
+$site-on-accent: #fff; // text and icons on top of the accent
+$primary-color: $site-accent;
+$link-color: $site-accent;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 @import "site/custom"; // site-specific styles
