@@ -5,10 +5,13 @@
 
 @charset "utf-8";
 
-// Accent of the dark theme: a muted red. It tints the header, links and primary buttons.
-$site-accent: #c8303a;
+// Accent of the dark theme: a soft terracotta, between red and orange. It tints the header, links and primary buttons.
+$site-accent: #bf5445;
 $site-on-accent: #fff; // text and icons on top of the accent
 $primary-color: $site-accent;
+// Sidebar width on medium-wide screens: wide enough for the site title, so that the navigation
+// starts where the page content starts (see _sass/site/_custom.scss).
+$right-sidebar-width-narrow: 240px;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_dark_skin | default: 'dark' }}"; // skin
 @import "minimal-mistakes"; // main partials

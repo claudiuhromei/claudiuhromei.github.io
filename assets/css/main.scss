@@ -9,6 +9,9 @@ $site-accent: #006b3f;
 $site-on-accent: #fff; // text and icons on top of the accent
 $primary-color: $site-accent;
 $link-color: $site-accent;
+// Sidebar width on medium-wide screens: wide enough for the site title, so that the navigation
+// starts where the page content starts (see _sass/site/_custom.scss).
+$right-sidebar-width-narrow: 240px;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials

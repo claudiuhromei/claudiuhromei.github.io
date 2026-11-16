@@ -2,14 +2,14 @@
 
 require_relative "test_helper"
 
-# Coloured header: green in the light theme, red in the dark one, readable in both,
+# Coloured header: green in the light theme, terracotta in the dark one, readable in both,
 # and stacked above the author sidebar so the open navigation menu covers the "Follow" button.
 class HeaderTest < Minitest::Test
   include SiteHelpers
 
   STYLESHEETS = {
     "assets/css/main.css" => "#006b3f",
-    "assets/css/main-dark.css" => "#c8303a"
+    "assets/css/main-dark.css" => "#bf5445"
   }.freeze
   MINIMUM_CONTRAST = 4.5 # WCAG AA for normal text
 
@@ -32,6 +32,17 @@ class HeaderTest < Minitest::Test
       masthead = declaration(path, ".masthead", "z-index").to_i
       sidebar = declaration(path, ".author__urls-wrapper", "z-index").to_i
       assert_operator masthead, :>, sidebar
+    end
+
+    # On wide screens the navigation starts where the page content starts and the content
+    # runs up to the header's right edge (no empty right-hand column).
+    define_method("test_#{name}_header_and_page_content_share_their_edges") do
+      css = File.read(site_path(path), encoding: "utf-8")
+      assert_equal "flex-start", declaration(path, ".masthead .visible-links", "justify-content")
+      assert_includes css, ".masthead .site-title{min-width:calc(240px - 2rem)}"
+      assert_includes css, ".masthead .site-title{min-width:calc(300px - 2rem)}"
+      assert_includes css, "width:calc(100% - 240px)", "sidebar column must fit the site title"
+      assert_equal "0", declaration(path, ".page", "padding-inline-end")
     end
 
     define_method("test_#{name}_primary_buttons_are_readable") do
