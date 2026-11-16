@@ -6,18 +6,19 @@ require_relative "test_helper"
 class PagesTest < Minitest::Test
   include SiteHelpers
 
-  # permalink => [navigation title, phrases the page must contain]
+  # permalink => [page title, navigation label (nil when the page is not in the navigation),
+  #               phrases the page must contain]
   PAGES = {
-    "/experience/" => ["Experience", ["BIP", "REVEAL SRL", "Ph.D. in Artificial Intelligence", "2018 – 2021 · University of Rome Tor Vergata"]],
-    "/projects/" => ["Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
-    "/publications/" => ["Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
-    "/teaching/" => ["Teaching & Talks", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
-    "/service/" => ["Service & Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
-    "/cv/" => ["CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]],
-    "/news/" => ["News", ["Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
+    "/experience/" => ["Experience", "Experience", ["BIP", "REVEAL SRL", "Ph.D. in Artificial Intelligence", "2018 – 2021 · University of Rome Tor Vergata"]],
+    "/projects/" => ["Projects", "Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
+    "/publications/" => ["Publications", "Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
+    "/teaching/" => ["Teaching & Talks", "Teaching", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
+    "/service/" => ["Awards & Service", "Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
+    "/cv/" => ["CV", "CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]],
+    "/news/" => ["News", nil, ["Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
   }.freeze
 
-  PAGES.each do |permalink, (title, phrases)|
+  PAGES.each do |permalink, (title, navigation_label, phrases)|
     slug = permalink.delete("/")
 
     define_method("test_#{slug}_page_has_title_and_key_content") do
@@ -32,9 +33,20 @@ class PagesTest < Minitest::Test
       refute_equal home_description, description
     end
 
-    define_method("test_navigation_links_to_#{slug}") do
-      assert_includes navigation_links, [title, permalink]
+    define_method("test_navigation_for_#{slug}") do
+      if navigation_label
+        assert_includes navigation_links, [navigation_label, permalink]
+      else
+        refute_includes navigation_links.map(&:last), permalink
+      end
     end
+  end
+
+  # Short labels keep every entry visible in the header instead of folding some into the menu.
+  def test_navigation_is_short_enough_to_fit_the_header
+    labels = home.css("nav.greedy-nav .visible-links a").map { |a| a.text.strip }
+    assert_operator labels.size, :<=, 7
+    assert_operator labels.sum(&:length), :<=, 55
   end
 
   def test_navigation_has_no_links_to_missing_pages

@@ -1,4 +1,5 @@
-# Top navigation. Keep in sync with the pages in _pages/ (checked by test/pages_test.rb).
+# Top navigation. Labels are kept short so that every entry fits in the header on desktop screens;
+# the page titles can be longer. News is reached from the home page. Checked by test/pages_test.rb.
 main:
   - title: "About"
     url: /
@@ -8,11 +9,9 @@ main:
     url: /projects/
   - title: "Publications"
     url: /publications/
-  - title: "Teaching & Talks"
+  - title: "Teaching"
     url: /teaching/
-  - title: "Service & Awards"
+  - title: "Awards"
     url: /service/
-  - title: "News"
-    url: /news/
   - title: "CV"
     url: /cv/

@@ -50,4 +50,4 @@ Details are on the [Experience]({{ '/experience/' | relative_url }}) page.
 [Projects]({{ '/projects/' | relative_url }}) ·
 [Publications]({{ '/publications/' | relative_url }}) ·
 [Teaching & Talks]({{ '/teaching/' | relative_url }}) ·
-[Service & Awards]({{ '/service/' | relative_url }})
+[Awards & Service]({{ '/service/' | relative_url }})
