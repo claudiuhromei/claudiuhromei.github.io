@@ -2,14 +2,14 @@
 
 require_relative "test_helper"
 
-# Coloured header: green in the light theme, orange in the dark one, readable in both,
+# Coloured header: green in the light theme, red in the dark one, readable in both,
 # and stacked above the author sidebar so the open navigation menu covers the "Follow" button.
 class HeaderTest < Minitest::Test
   include SiteHelpers
 
   STYLESHEETS = {
     "assets/css/main.css" => "#006b3f",
-    "assets/css/main-dark.css" => "#d97757"
+    "assets/css/main-dark.css" => "#c8303a"
   }.freeze
   MINIMUM_CONTRAST = 4.5 # WCAG AA for normal text
 

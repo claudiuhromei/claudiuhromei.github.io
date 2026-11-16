@@ -5,9 +5,9 @@
 
 @charset "utf-8";
 
-// Accent of the dark theme: a warm orange. It tints the header, links and primary buttons.
-$site-accent: #d97757;
-$site-on-accent: #1f1e1d; // text and icons on top of the accent
+// Accent of the dark theme: a muted red. It tints the header, links and primary buttons.
+$site-accent: #c8303a;
+$site-on-accent: #fff; // text and icons on top of the accent
 $primary-color: $site-accent;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_dark_skin | default: 'dark' }}"; // skin
