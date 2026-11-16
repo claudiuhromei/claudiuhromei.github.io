@@ -12,10 +12,10 @@ class ContactTest < Minitest::Test
   EMAIL = /\A[a-z0-9._-]+@[a-z0-9-]+(\.[a-z0-9-]+)+\z/
 
   def setup
-    @button = page("index.html").at_css(".author__urls button.js-contact")
+    @button = page("index.html").at_css(".author__urls a.js-contact")
   end
 
-  def test_sidebar_has_an_email_button_on_every_page_with_a_sidebar
+  def test_sidebar_has_an_email_link_on_every_page_with_a_sidebar
     refute_nil @button
     assert_equal "Email", @button.text.strip
 
@@ -23,8 +23,14 @@ class ContactTest < Minitest::Test
       doc = Nokogiri::HTML(File.read(file, encoding: "utf-8"))
       next unless doc.at_css(".author__urls")
 
-      refute_nil doc.at_css(".author__urls button.js-contact"), "email button missing in #{file}"
+      refute_nil doc.at_css(".author__urls a.js-contact"), "email link missing in #{file}"
     end
+  end
+
+  # The theme hides every <button> of the sidebar on wide screens, which would hide the contact too.
+  def test_email_link_is_not_a_button_element
+    assert_equal "a", @button.name
+    assert_equal "#", @button["href"]
   end
 
   def test_button_carries_the_two_reversed_halves_of_a_valid_address

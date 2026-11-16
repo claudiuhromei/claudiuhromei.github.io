@@ -44,6 +44,12 @@ class PublicationsTest < Minitest::Test
     end
   end
 
+  def test_citations_do_not_spell_out_urls
+    @entries.each do |entry|
+      refute_match(%r{https?://}, entry.text, "raw URL in: #{entry.text.strip[0, 80]}")
+    end
+  end
+
   def test_best_paper_awards_are_shown
     awarded = @entries.select { |entry| entry.at_css(".publication__award") }
     assert_equal 2, awarded.size
