@@ -38,8 +38,8 @@ social:
     - "https://huggingface.co/cdh"
 
 # Analytics: GoatCounter site code (the "code" in https://code.goatcounter.com).
-# Leave empty to disable; the script is only added to production builds.
-goatcounter_code: ""
+# Set to "" to disable; the script is only added to production builds.
+goatcounter_code: "claudiuhromei"
 
 # Site author (sidebar on every page). Further profile links are added once confirmed.
 author:
