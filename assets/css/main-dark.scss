@@ -1,0 +1,10 @@
+---
+# Dark stylesheet, loaded on top of main.css only when the OS asks for a dark colour scheme
+# (see _includes/head/custom.html).
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_dark_skin | default: 'dark' }}"; // skin
+@import "minimal-mistakes"; // main partials
+@import "site/custom"; // site-specific styles

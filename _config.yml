@@ -2,6 +2,8 @@
 
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default"
+# Skin applied automatically when the visitor's OS uses a dark colour scheme.
+minimal_mistakes_dark_skin: "dark"
 
 # Site settings
 locale: "en-US"
