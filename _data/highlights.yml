@@ -1,0 +1,17 @@
+# Highlight cards on the home page (_pages/about.md), in display order.
+- figure: "EMNLP · ACL"
+  title: "First-author papers in 2025"
+  text: "On grounded language understanding for robots and on dialogue planning with multimodal LLMs."
+  url: /publications/
+- figure: "2"
+  title: "Best Paper Awards"
+  text: "EVALITA 2023 for ExtremITA and NL4AI 2022 for grounded semantic role labelling."
+  url: /service/
+- figure: ">90%"
+  title: "Less drafting time"
+  text: "Multi-agent system for financial documents at BIP, measured in internal benchmarks."
+  url: /experience/
+- figure: "20+"
+  title: "Theses co-supervised"
+  text: "B.Sc. and M.Sc. students at the University of Rome Tor Vergata, several with joint publications."
+  url: /teaching/

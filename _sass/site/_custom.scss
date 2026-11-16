@@ -186,3 +186,60 @@ ol.bibliography {
     color: $primary-color;
   }
 }
+
+// Highlight cards on the home page.
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin: 1em 0 2em;
+  padding: 0;
+  list-style: none;
+
+  // Two by two from tablets up, so the four cards never leave one alone on a row.
+  @include breakpoint($small) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.highlights__item {
+  margin: 0;
+}
+
+.highlights__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  height: 100%;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-top: 4px solid $site-accent;
+  border-radius: $border-radius;
+  color: $text-color;
+  text-decoration: none;
+
+  &:visited {
+    color: $text-color;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $site-accent;
+    color: $text-color;
+  }
+}
+
+.highlights__figure {
+  color: $link-color;
+  font-size: $type-size-3;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.highlights__title {
+  font-weight: bold;
+}
+
+.highlights__text {
+  font-size: $type-size-6;
+}
