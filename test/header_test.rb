@@ -45,6 +45,18 @@ class HeaderTest < Minitest::Test
       assert_equal "0", declaration(path, ".page", "padding-inline-end")
     end
 
+    # Running text is capped at a readable measure; headings, tables and card grids are not.
+    define_method("test_#{name}_running_text_has_a_readable_line_length") do
+      css = File.read(site_path(path), encoding: "utf-8")
+      rule = css[/\.page__content>p,[^{]*\{max-width:([^;}]+)\}/, 1]
+      assert_equal "37em", rule
+      selectors = css[/(\.page__content>p,[^{]*)\{max-width:37em\}/, 1]
+      assert_includes selectors, ".page__content>ul:not(.highlights)"
+      assert_includes selectors, ".page__content .publication"
+      refute_includes selectors, "table"
+      refute_includes selectors, "h2"
+    end
+
     define_method("test_#{name}_primary_buttons_are_readable") do
       text = declaration(path, ".btn--primary,.btn--primary:visited,.btn--primary:hover", "color")
       background = declaration(path, ".btn--primary", "background-color")

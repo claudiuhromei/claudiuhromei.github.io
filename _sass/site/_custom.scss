@@ -272,3 +272,17 @@ ol.bibliography {
 .highlights__text {
   font-size: $type-size-6;
 }
+
+// Readable line length: running text stops at about 80 characters per line, while headings, tables
+// and card grids keep the full width of the column (which lines up with the header).
+$site-text-measure: 37em;
+
+.page__content {
+  > p,
+  > ul:not(.highlights),
+  > ol:not(.bibliography),
+  > blockquote,
+  .publication {
+    max-width: $site-text-measure;
+  }
+}
