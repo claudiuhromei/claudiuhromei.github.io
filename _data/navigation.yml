@@ -12,5 +12,7 @@ main:
     url: /teaching/
   - title: "Service & Awards"
     url: /service/
+  - title: "News"
+    url: /news/
   - title: "CV"
     url: /cv/

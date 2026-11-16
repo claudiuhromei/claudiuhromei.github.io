@@ -22,11 +22,33 @@ search: false
 comments:
   provider: false
 
+# SEO and social previews
+og_image: /assets/images/og-image.png
+og_image_alt: "Claudiu Daniel Hromei — Senior AI Scientist and AI Researcher"
+social:
+  type: Person
+  name: "Claudiu Daniel Hromei"
+  links:
+    - "https://www.linkedin.com/in/cdhromei/"
+    - "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
+    - "https://orcid.org/0009-0000-8204-5023"
+    - "https://www.semanticscholar.org/author/2148228904"
+    - "https://aclanthology.org/people/claudiu-daniel-hromei/"
+    - "https://huggingface.co/cdh"
+
+# Analytics: GoatCounter site code (the "code" in https://code.goatcounter.com).
+# Leave empty to disable; the script is only added to production builds.
+goatcounter_code: ""
+
 # Site author (sidebar on every page). Further profile links are added once confirmed.
 author:
   name: "Claudiu Daniel Hromei"
   bio: "Senior AI Scientist · AI Researcher · NLP & LLMs"
   location: "Rome, Italy"
+  # Email, never in plain text: user and domain parts written backwards, joined by assets/js/contact.js.
+  contact:
+    user_reversed: "iemorh.dc"
+    domain_reversed: "moc.liamg"
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
@@ -126,5 +148,6 @@ defaults:
       layout: single
       author_profile: true
       read_time: false
+      show_date: false
       share: false
       related: false
