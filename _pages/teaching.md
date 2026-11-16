@@ -17,7 +17,7 @@ processes.
 
 - **Large Language Models and How to Instruction Tune Them (in a Sustainable Way)**, tutorial at CLiC-it 2023.
   Co-delivered tutorial on efficient fine-tuning techniques (LoRA, PEFT) applied to models such as LLaMA and
-  Alpaca. [Announcement](https://clic2023.ilc.cnr.it/tutorial/) ·
+  Alpaca. [Announcement (archived)](https://web.archive.org/web/20260515172452/https://clic2023.ilc.cnr.it/tutorial/) ·
   [Code on GitHub](https://github.com/crux82/CLiC-it_2023_tutorial)
 
 ## University teaching

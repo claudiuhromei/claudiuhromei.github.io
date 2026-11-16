@@ -15,6 +15,11 @@ task :serve do
 end
 
 namespace :test do
+  desc "Run the tests of the Python helper scripts in tools/ (needs uv)"
+  task :tools do
+    sh "uv run --no-project --with pytest --with pymupdf pytest tools --quiet"
+  end
+
   Rake::TestTask.new(:unit) do |t|
     t.libs << "test"
     t.test_files = FileList["test/**/*_test.rb"]
@@ -36,6 +41,6 @@ namespace :test do
 end
 
 desc "Build the site and run all tests (set CHECK_EXTERNAL=1 to also check external links)"
-task test: %w[test:unit test:links]
+task test: %w[test:unit test:links test:tools]
 
 task default: :test

@@ -33,6 +33,13 @@ class SiteTest < Minitest::Test
     assert_includes @home.at_css(".author__urls").text, "Rome, Italy"
   end
 
+  def test_author_sidebar_shows_the_profile_photo
+    avatar = @home.at_css(".author__avatar img")
+    refute_nil avatar, "profile photo not rendered"
+    assert_equal "Claudiu Daniel Hromei", avatar["alt"]
+    assert File.exist?(site_path(avatar["src"].delete_prefix("/"))), "profile photo not published"
+  end
+
   def test_svg_favicon_is_linked_and_published
     icon = @home.at_css('link[rel="icon"][type="image/svg+xml"]')
     refute_nil icon, "missing SVG favicon <link>"
@@ -49,5 +56,6 @@ class SiteTest < Minitest::Test
       refute File.exist?(site_path(file)), "#{file} must not be published"
     end
     refute Dir.exist?(site_path("test")), "test/ must not be published"
+    refute Dir.exist?(site_path("tools")), "tools/ must not be published"
   end
 end
