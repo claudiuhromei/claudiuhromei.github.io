@@ -133,3 +133,30 @@ def test_follow_button_opens_the_profile_links_on_a_phone(open_page):
     expect(page.locator(".author__urls")).to_be_hidden()
     page.locator(".author__urls-wrapper button").click()
     expect(page.locator(".author__urls")).to_be_visible()
+
+
+# --- Printing ------------------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("scheme", ["light", "dark"])
+def test_printed_cv_shows_only_the_content_in_black_on_white(open_page, scheme):
+    page = open_page("/cv/", scheme=scheme)
+    page.emulate_media(media="print")
+
+    for selector in (".masthead", ".sidebar", ".page__footer", ".js-theme-toggle", ".page__content .btn"):
+        expect(page.locator(selector).first).to_be_hidden()
+    expect(page.locator("h1.page__title")).to_be_visible()
+    expect(page.locator(".page__content table").first).to_be_visible()
+
+    assert page_background(page) == LIGHT_BACKGROUND
+    for selector in ("h1.page__title a", ".page__content p"):
+        channels = page.evaluate(
+            "(s) => getComputedStyle(document.querySelector(s)).color.match(/\d+/g).map(Number)", selector
+        )
+        assert max(channels[:3]) < 40, f"{selector} is not printed in (near) black: {channels}"
+    title_suffix = page.evaluate("getComputedStyle(document.querySelector('h1.page__title a'), '::after').content")
+    assert title_suffix in ("none", "normal"), "the page title must not print its own address"
+
+    viewport = page.viewport_size["width"]
+    content = page.locator(".page__content").bounding_box()
+    assert content["x"] < 40 and content["width"] > viewport - 80, "printed content must use the full width"
