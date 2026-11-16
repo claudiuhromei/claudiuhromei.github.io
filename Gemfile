@@ -7,6 +7,7 @@ gem "minimal-mistakes-jekyll", "4.28.1"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.17"
   gem "jekyll-include-cache", "~> 0.2"
+  gem "jekyll-scholar", "~> 7.1"
   gem "jekyll-sitemap", "~> 1.4"
 end
 

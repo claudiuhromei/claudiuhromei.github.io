@@ -12,7 +12,7 @@ class PagesTest < Minitest::Test
     "/projects/" => ["Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
     "/publications/" => ["Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
     "/teaching/" => ["Teaching & Talks", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
-    "/service/" => ["Service & Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022"]],
+    "/service/" => ["Service & Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
     "/cv/" => ["CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]]
   }.freeze
 
@@ -54,6 +54,9 @@ class PagesTest < Minitest::Test
     assert_includes hrefs, "https://www.linkedin.com/in/cdhromei/"
     assert_includes hrefs, "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
     assert_includes hrefs, "https://huggingface.co/cdh"
+    assert_includes hrefs, "https://orcid.org/0009-0000-8204-5023"
+    assert_includes hrefs, "https://www.semanticscholar.org/author/2148228904"
+    assert_includes hrefs, "https://aclanthology.org/people/claudiu-daniel-hromei/"
   end
 
   private
