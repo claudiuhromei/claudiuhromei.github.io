@@ -1,0 +1,11 @@
+---
+# Template for one bibliography entry (jekyll-scholar `bibliography_template`).
+---
+<span class="publication">
+  {{ reference | replace: "Hromei, C. D.", "<strong>Hromei, C. D.</strong>" }}
+  {%- if entry.award %} <strong class="publication__award">{{ entry.award }}</strong>{% endif %}
+  <span class="publication__links">
+    {%- if entry.url %} <a href="{{ entry.url }}">Paper</a>{% endif %}
+    {%- if entry.code %} · <a href="{{ entry.code }}">Code</a>{% endif %}
+  </span>
+</span>

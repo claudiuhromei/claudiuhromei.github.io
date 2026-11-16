@@ -11,6 +11,8 @@ description: "Awards and academic service of Claudiu Daniel Hromei."
 
 ## Academic service
 
+- **Workshop organisation:** co-organiser of NL4AI 2024, the Eighth Workshop on Natural Language for
+  Artificial Intelligence, co-located with the AIxIA 2024 conference.
 - **Mentoring:** co-supervisor of more than 20 B.Sc. and M.Sc. theses and mentor of Ph.D. students at the
   University of Rome Tor Vergata (2021 – present).
 - **Tutorials:** co-organiser of the tutorial on instruction tuning Large Language Models at CLiC-it 2023 (see

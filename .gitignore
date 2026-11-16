@@ -24,3 +24,4 @@ Thumbs.db
 # Local-only working notes for Claude Code (never commit)
 CLAUDE.md
 roadmap.md
+.claude/
