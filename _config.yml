@@ -36,12 +36,14 @@ social:
     - "https://www.semanticscholar.org/author/2148228904"
     - "https://aclanthology.org/people/claudiu-daniel-hromei/"
     - "https://huggingface.co/cdh"
+    - "https://openreview.net/profile?id=%7EClaudiu_Daniel_Hromei1"
 
 # Analytics: GoatCounter site code (the "code" in https://code.goatcounter.com).
 # Set to "" to disable; the script is only added to production builds.
 goatcounter_code: "claudiuhromei"
 
-# Site author (sidebar on every page). Further profile links are added once confirmed.
+# Site author (sidebar on every page). Icons are Font Awesome classes (the theme loads the latest free
+# release); sites without a brand icon (Scholar, DBLP, OpenReview, ...) use a generic one.
 author:
   name: "Claudiu Daniel Hromei"
   bio: "Senior AI Scientist · AI Researcher · NLP & LLMs"
@@ -70,8 +72,11 @@ author:
     - label: "ACL Anthology"
       icon: "fas fa-fw fa-file-lines"
       url: "https://aclanthology.org/people/claudiu-daniel-hromei/"
+    - label: "OpenReview"
+      icon: "fas fa-fw fa-comments"
+      url: "https://openreview.net/profile?id=%7EClaudiu_Daniel_Hromei1"
     - label: "Hugging Face"
-      icon: "fas fa-fw fa-link"
+      icon: "fab fa-fw fa-hugging-face"
       url: "https://huggingface.co/cdh"
 
 # Reading files
