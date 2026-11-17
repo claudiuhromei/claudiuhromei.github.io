@@ -13,7 +13,7 @@ end
 
 group :test do
   gem "html-proofer", "~> 5.0"
-  gem "minitest", "~> 5.25"
+  gem "minitest", "~> 6.1"
   gem "nokogiri", "~> 1.16"
   gem "pdf-reader", "~> 2.12"
 end
