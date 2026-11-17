@@ -20,7 +20,7 @@ end
 namespace :test do
   desc "Run the tests of the Python helper scripts in tools/ (needs uv)"
   task :tools do
-    sh "uv run --no-project --with pytest --with pymupdf pytest tools --quiet"
+    sh "uv run --no-project --with pytest --with pymupdf --with pillow pytest tools --quiet"
   end
 
   desc "Run the browser tests in browser_tests/ against the built site (needs uv and a Chromium browser)"

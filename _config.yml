@@ -24,7 +24,8 @@ comments:
 
 # SEO and social previews
 og_image: /assets/images/og-image.png
-og_image_alt: "Claudiu Daniel Hromei — Senior AI Scientist and AI Researcher"
+# Generated from the profile photo by tools/make_og_image.py: run it again when the photo or headline changes.
+og_image_alt: "Photo of Claudiu Daniel Hromei next to the name and headline: Senior AI Scientist and AI Researcher"
 social:
   type: Person
   name: "Claudiu Daniel Hromei"
