@@ -286,3 +286,88 @@ $site-text-measure: 37em;
     max-width: $site-text-measure;
   }
 }
+
+// Printing (mainly the CV page): only the content, full width, black on white.
+@media print {
+  .masthead,
+  .sidebar,
+  .page__footer,
+  .theme-toggle,
+  .btn,
+  .publication__links,
+  .skip-link {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+
+  // No colour fades while switching to the print layout.
+  * {
+    transition: none !important;
+  }
+
+  // The theme's own print rules use a dark grey; plain black prints sharper.
+  .page__title,
+  .page__title *,
+  .page__content,
+  .page__content * {
+    color: #000 !important;
+  }
+
+  // The theme prints the address after every link; the page title does not need its own.
+  .page__title a::after {
+    content: none !important;
+  }
+
+  #main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .page {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .page__content {
+    > p,
+    > ul:not(.highlights),
+    > ol:not(.bibliography),
+    .publication {
+      max-width: none;
+    }
+
+    h2,
+    h3 {
+      break-after: avoid;
+    }
+
+    tr,
+    li {
+      break-inside: avoid;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    table {
+      display: table;
+      width: 100%;
+      font-size: 0.9em;
+    }
+
+    th,
+    td {
+      background: #fff;
+      color: #000;
+    }
+  }
+}
