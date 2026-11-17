@@ -62,6 +62,31 @@ class PagesTest < Minitest::Test
     end
   end
 
+  # Project heading => where its figure comes from (GrUT has no openly licensed figure).
+  PROJECT_FIGURES = {
+    "Situated G-SRL & synthetic data generation" => "https://aclanthology.org/2025.emnlp-main.1212/",
+    "MM-IGLU" => "https://aclanthology.org/2025.findings-acl.837/",
+    "ExtremITA" => "https://github.com/crux82/ExtremITA",
+    "U-DepPLLaMA" => "https://aclanthology.org/2023.clicit-1.30/",
+    "HeAL9000" => "https://ceur-ws.org/Vol-3060/paper-4.pdf"
+  }.freeze
+
+  def test_project_figures_are_described_sized_and_credited
+    figures = page("projects/index.html").css(".page__content figure.project-figure")
+    assert_equal PROJECT_FIGURES.size, figures.size
+    figures.each do |figure|
+      heading = figure.xpath("preceding-sibling::h2[1]").text.strip
+      image = figure.at_css("img")
+      path = site_path(image["src"].delete_prefix("/"))
+
+      assert File.exist?(path), "#{image['src']} not published"
+      assert_operator image["alt"].length, :>=, 30, "#{heading}: the alt text must describe the figure"
+      assert_equal "lazy", image["loading"]
+      assert_equal png_size(path), [image["width"].to_i, image["height"].to_i], "#{heading}: wrong width/height"
+      assert_includes figure.css("figcaption a").map { |a| a["href"] }, PROJECT_FIGURES.fetch(heading)
+    end
+  end
+
   def test_author_sidebar_links_to_confirmed_profiles
     hrefs = page("index.html").css(".author__urls a").map { |a| a["href"] }
     assert_includes hrefs, "https://www.linkedin.com/in/cdhromei/"
@@ -81,6 +106,11 @@ class PagesTest < Minitest::Test
 
   def home_description
     home.at_css('meta[name="description"]')["content"]
+  end
+
+  # Width and height of a PNG file, read from its header.
+  def png_size(path)
+    File.binread(path, 24).unpack("@16NN")
   end
 
   def navigation_links

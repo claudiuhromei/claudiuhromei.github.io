@@ -24,6 +24,29 @@ def test_open_citation_does_not_widen_the_page_on_a_phone(open_page):
     assert horizontal_overflow(page) == 0
 
 
+@pytest.mark.parametrize("width", [PHONE, DESKTOP])
+def test_project_figures_fit_the_text_column_and_half_a_screen(open_page, width):
+    page = open_page("/projects/", width)
+    images = page.locator(".project-figure img")
+    assert images.count() == 5
+    paragraph = page.locator(".page__content > p").first.bounding_box()
+    rem = page.evaluate("parseFloat(getComputedStyle(document.documentElement).fontSize)")
+    for index in range(images.count()):
+        image = images.nth(index)
+        image.scroll_into_view_if_needed()
+        expect(image).to_have_js_property("complete", True)
+        box = image.bounding_box()
+        assert box["width"] > 50, "the figure did not load"
+        assert box["x"] + box["width"] <= paragraph["x"] + paragraph["width"] + 1
+        assert box["height"] <= 24 * rem + 1
+
+
+def test_project_figures_keep_a_white_background_in_the_dark_theme(open_page):
+    page = open_page("/projects/", scheme="dark")
+    background = page.evaluate("getComputedStyle(document.querySelector('.project-figure img')).backgroundColor")
+    assert background == LIGHT_BACKGROUND
+
+
 # --- Theme -------------------------------------------------------------------------------------
 
 

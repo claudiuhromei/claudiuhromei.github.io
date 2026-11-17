@@ -1,0 +1,10 @@
+{%- comment -%}
+  A project figure with its source. Parameters: image (file name in /assets/images/projects/), alt,
+  width and height (pixels of the file, to reserve space while it loads), source (caption text, Markdown),
+  class (optional, e.g. "project-figure--logo").
+{%- endcomment -%}
+<figure class="project-figure {{ include.class }}">
+  <img src="{{ '/assets/images/projects/' | append: include.image | relative_url }}"
+       alt="{{ include.alt | escape_once }}" width="{{ include.width }}" height="{{ include.height }}" loading="lazy" decoding="async">
+  <figcaption>{{ include.source | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>
+</figure>
