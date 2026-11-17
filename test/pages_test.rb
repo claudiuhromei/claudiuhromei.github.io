@@ -62,29 +62,45 @@ class PagesTest < Minitest::Test
     end
   end
 
-  # Project heading => where its figure comes from (GrUT has no openly licensed figure).
+  # Project heading => where each of its figures comes from, in page order
+  # (GrUT has no openly licensed figure).
   PROJECT_FIGURES = {
-    "Situated G-SRL & synthetic data generation" => "https://aclanthology.org/2025.emnlp-main.1212/",
-    "MM-IGLU" => "https://aclanthology.org/2025.findings-acl.837/",
-    "ExtremITA" => "https://github.com/crux82/ExtremITA",
-    "U-DepPLLaMA" => "https://aclanthology.org/2023.clicit-1.30/",
-    "HeAL9000" => "https://ceur-ws.org/Vol-3060/paper-4.pdf"
+    "Situated G-SRL & synthetic data generation" => %w[https://aclanthology.org/2025.emnlp-main.1212/] * 2,
+    "MM-IGLU" => %w[https://aclanthology.org/2025.findings-acl.837/],
+    "ExtremITA" => %w[https://github.com/crux82/ExtremITA],
+    "U-DepPLLaMA" => %w[https://aclanthology.org/2023.clicit-1.30/],
+    "HeAL9000" => %w[https://ceur-ws.org/Vol-3060/paper-4.pdf]
   }.freeze
 
   def test_project_figures_are_described_sized_and_credited
     figures = page("projects/index.html").css(".page__content figure.project-figure")
-    assert_equal PROJECT_FIGURES.size, figures.size
-    figures.each do |figure|
-      heading = figure.xpath("preceding-sibling::h2[1]").text.strip
+    headings = figures.map { |figure| figure.xpath("preceding-sibling::h2[1]").text.strip }
+    assert_equal PROJECT_FIGURES.transform_values(&:size), headings.tally
+    figures.zip(headings).each do |figure, heading|
       image = figure.at_css("img")
       path = site_path(image["src"].delete_prefix("/"))
 
       assert File.exist?(path), "#{image['src']} not published"
       assert_operator image["alt"].length, :>=, 30, "#{heading}: the alt text must describe the figure"
       assert_equal "lazy", image["loading"]
-      assert_equal png_size(path), [image["width"].to_i, image["height"].to_i], "#{heading}: wrong width/height"
-      assert_includes figure.css("figcaption a").map { |a| a["href"] }, PROJECT_FIGURES.fetch(heading)
+      assert_equal image_size(path), [image["width"].to_i, image["height"].to_i], "#{heading}: wrong width/height"
+      assert_includes PROJECT_FIGURES.fetch(heading), figure.at_css("figcaption a")["href"]
     end
+  end
+
+  def test_situated_project_explains_the_ambiguous_command_before_its_picture
+    section = page("projects/index.html").css(".page__content > *")
+                                         .drop_while { |node| node.text.strip != "Situated G-SRL & synthetic data generation" }
+    explanation = section.index { |node| node.name == "p" && node.text.include?("take the phone on the bed") }
+    picture = section.index { |node| node.at_css("img[src$='situated-g-srl-scene.jpg']") }
+    refute_nil explanation
+    refute_nil picture
+    assert_operator explanation, :<, picture
+  end
+
+  def test_image_size_reads_png_and_jpeg_headers
+    assert_equal [148, 149], image_size(site_path("assets/images/projects/extremita.png"))
+    assert_equal [883, 624], image_size(site_path("assets/images/projects/situated-g-srl-scene.jpg"))
   end
 
   def test_conference_presentations_link_to_their_videos
@@ -121,9 +137,19 @@ class PagesTest < Minitest::Test
     home.at_css('meta[name="description"]')["content"]
   end
 
-  # Width and height of a PNG file, read from its header.
-  def png_size(path)
-    File.binread(path, 24).unpack("@16NN")
+  # [width, height] of a PNG or JPEG file, read from its header (JPEG: the first start-of-frame segment).
+  def image_size(path)
+    data = File.binread(path)
+    return data.unpack("@16NN") if data.start_with?("\x89PNG".b)
+
+    offset = 2
+    while offset < data.bytesize
+      marker, length = data.unpack("@#{offset + 1}Cn")
+      return data.unpack("@#{offset + 5}nn").reverse if (0xC0..0xCF).cover?(marker) && ![0xC4, 0xC8, 0xCC].include?(marker)
+
+      offset += 2 + length
+    end
+    flunk "no image size found in #{path}"
   end
 
   def navigation_links
