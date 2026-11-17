@@ -47,6 +47,24 @@ def test_project_figures_keep_a_white_background_in_the_dark_theme(open_page):
     assert background == LIGHT_BACKGROUND
 
 
+@pytest.mark.parametrize("width", [PHONE, DESKTOP])
+def test_experience_timeline_dots_sit_on_the_line_beside_their_titles(open_page, width):
+    page = open_page("/experience/", width)
+    dots = page.evaluate(
+        """() => [...document.querySelectorAll('.timeline > h3')].map(h3 => {
+            const line = h3.parentElement.getBoundingClientRect().left + 1;  // middle of the 2px border
+            const dot = getComputedStyle(h3, '::before');
+            const box = h3.getBoundingClientRect();
+            const centre = box.left + parseFloat(dot.left) + parseFloat(dot.width) / 2;
+            return {offset: Math.abs(centre - line), top: parseFloat(dot.top), height: box.height};
+        })"""
+    )
+    assert len(dots) == 5
+    for dot in dots:
+        assert dot["offset"] <= 1, "dot is not centred on the line"
+        assert 0 <= dot["top"] < dot["height"]
+
+
 # --- Theme -------------------------------------------------------------------------------------
 
 
