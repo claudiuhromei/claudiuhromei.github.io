@@ -4,6 +4,8 @@ permalink: /experience/
 description: "Professional experience and education of Claudiu Daniel Hromei."
 ---
 
+{% include timeline.html %}
+
 ## Professional experience
 
 ### Senior AI Scientist (Finance) · BIP (Business Integration Partners)

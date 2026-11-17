@@ -1,0 +1,30 @@
+# Experience timeline (top of /experience/). Oldest first. `start`/`end` are "YYYY-MM"; leave `end` out for
+# roles that are still ongoing. `period` is the text shown; the M.Sc. months are approximate (CV: 2018 – 2021).
+- title: M.Sc. in Computer Science (AI)
+  place: Tor Vergata
+  kind: education
+  start: "2018-10"
+  end: "2021-10"
+  period: 2018 – 2021
+- title: R&D Researcher (NLU & HRI)
+  place: REVEAL SRL
+  kind: work
+  start: "2020-11"
+  end: "2025-04"
+  period: Nov 2020 – Apr 2025
+- title: Ph.D. in Artificial Intelligence
+  place: Tor Vergata & Campus Bio-Medico
+  kind: education
+  start: "2021-11"
+  end: "2025-06"
+  period: Nov 2021 – Jun 2025
+- title: Senior AI Scientist (Finance)
+  place: BIP
+  kind: work
+  start: "2025-05"
+  period: May 2025 – present
+- title: Postdoc Volunteer Researcher
+  place: Tor Vergata
+  kind: research
+  start: "2025-06"
+  period: Jun 2025 – present

@@ -319,6 +319,110 @@ $site-text-measure: 37em;
   background-color: transparent;
 }
 
+// Experience timeline (see _includes/timeline.html): label above the bar on phones, beside it from tablets
+// up. Faint lines mark each year; ongoing roles fade out at today's end.
+$timeline-colours: (
+  work: $site-accent,
+  research: scale-color($site-accent, $lightness: 40%),
+  education: mix($text-color, $background-color, 45%)
+);
+
+.timeline {
+  margin: 0 0 2em;
+  font-size: $type-size-6;
+}
+
+.timeline__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25em 1em;
+  align-items: center;
+  margin: 0 0 0.75em;
+
+  @include breakpoint($small) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    margin-bottom: 0.5em;
+  }
+}
+
+.timeline__period {
+  display: block;
+  color: $muted-text-color;
+}
+
+.timeline__track {
+  position: relative;
+  display: block;
+  height: 1em;
+  background-image: linear-gradient(to right, $border-color 1px, transparent 1px);
+  background-size: var(--timeline-year) 100%;
+}
+
+.timeline__bar {
+  position: absolute;
+  top: 0.15em;
+  bottom: 0.15em;
+  border-radius: $border-radius;
+}
+
+.timeline__axis {
+  margin: 0;
+
+  .timeline__label {
+    display: none;
+
+    @include breakpoint($small) {
+      display: block;
+    }
+  }
+
+  .timeline__track {
+    height: 1.5em;
+  }
+}
+
+.timeline__tick {
+  position: absolute;
+  top: 0;
+  padding-left: 0.2em;
+  color: $muted-text-color;
+  font-size: 0.85em;
+  line-height: 1.5em;
+}
+
+.timeline__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 1.25em;
+  margin: 0.5em 0 0;
+}
+
+.timeline__key::before {
+  content: "";
+  display: inline-block;
+  width: 1.5em;
+  height: 0.7em;
+  margin-right: 0.4em;
+  border-radius: $border-radius;
+}
+
+@each $kind, $colour in $timeline-colours {
+  .timeline__row--#{$kind} .timeline__bar,
+  .timeline__key--#{$kind}::before {
+    background-color: $colour;
+  }
+
+  .timeline__row--#{$kind} .timeline__bar--ongoing {
+    background-image: linear-gradient(to right, $colour 60%, rgba($colour, 0.25));
+  }
+}
+
 // Printing (mainly the CV page): only the content, full width, black on white.
 @media print {
   .masthead,

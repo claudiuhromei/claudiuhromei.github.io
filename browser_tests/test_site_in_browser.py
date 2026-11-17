@@ -47,6 +47,20 @@ def test_project_figures_keep_a_white_background_in_the_dark_theme(open_page):
     assert background == LIGHT_BACKGROUND
 
 
+@pytest.mark.parametrize("width", [PHONE, DESKTOP])
+def test_experience_timeline_bars_line_up_with_the_year_axis(open_page, width):
+    page = open_page("/experience/", width)
+    axis = page.locator(".timeline__axis .timeline__track").bounding_box()
+    bars = page.locator(".timeline__bar")
+    assert bars.count() == 5
+    for index in range(bars.count()):
+        bar = bars.nth(index).bounding_box()
+        assert bar["width"] > 4, "every bar must be visible"
+        assert axis["x"] - 1 <= bar["x"] and bar["x"] + bar["width"] <= axis["x"] + axis["width"] + 1
+    ongoing = page.locator(".timeline__bar--ongoing").first.bounding_box()
+    assert abs(ongoing["x"] + ongoing["width"] - (axis["x"] + axis["width"])) <= 1
+
+
 # --- Theme -------------------------------------------------------------------------------------
 
 

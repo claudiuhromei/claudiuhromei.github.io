@@ -1,0 +1,51 @@
+{%- comment -%}
+  Experience timeline from _data/timeline.yml: one bar per entry on a shared axis that runs from January of
+  the first start year to the end of the current month (ongoing entries reach today). Positions are in
+  percent of that span; the bars are decorative, the text of each row carries the information.
+{%- endcomment -%}
+{%- assign entries = site.data.timeline -%}
+{%- assign first_start = entries | map: "start" | sort | first -%}
+{%- assign first_year = first_start | slice: 0, 4 | plus: 0 -%}
+{%- assign origin = first_year | times: 12 -%}
+{%- assign this_year = site.time | date: "%Y" | plus: 0 -%}
+{%- assign this_month = site.time | date: "%m" | plus: 0 -%}
+{%- assign today = this_year | times: 12 | plus: this_month -%}
+{%- assign span = today | minus: origin -%}
+{%- assign year_width = 1200.0 | divided_by: span | round: 3 -%}
+<div class="timeline" style="--timeline-year: {{ year_width }}%">
+  <ol class="timeline__rows">
+    {%- for entry in entries -%}
+      {%- assign start = entry.start | slice: 0, 4 | plus: 0 | times: 12 -%}
+      {%- assign start_month = entry.start | slice: 5, 2 | plus: 0 | minus: 1 -%}
+      {%- assign start = start | plus: start_month -%}
+      {%- if entry.end -%}
+        {%- assign end = entry.end | slice: 0, 4 | plus: 0 | times: 12 -%}
+        {%- assign end_month = entry.end | slice: 5, 2 | plus: 0 -%}
+        {%- assign end = end | plus: end_month -%}
+      {%- else -%}
+        {%- assign end = today -%}
+      {%- endif -%}
+      {%- assign left = start | minus: origin | times: 100.0 | divided_by: span | round: 2 -%}
+      {%- assign width = end | minus: start | times: 100.0 | divided_by: span | round: 2 %}
+    <li class="timeline__row timeline__row--{{ entry.kind }}">
+      <span class="timeline__label"><strong>{{ entry.title }}</strong> · {{ entry.place }}
+        <span class="timeline__period">{{ entry.period }}</span></span>
+      <span class="timeline__track" aria-hidden="true"><span class="timeline__bar{% unless entry.end %} timeline__bar--ongoing{% endunless %}" style="left: {{ left }}%; width: {{ width }}%"></span></span>
+    </li>
+    {%- endfor %}
+  </ol>
+  <div class="timeline__row timeline__axis" aria-hidden="true">
+    <span class="timeline__label"></span>
+    <span class="timeline__track">
+      {%- for year in (first_year..this_year) -%}
+        {%- assign position = year | minus: first_year | times: year_width | round: 2 %}
+      <span class="timeline__tick" style="left: {{ position }}%">{{ year }}</span>
+      {%- endfor %}
+    </span>
+  </div>
+  <p class="timeline__legend">
+    <span class="timeline__key timeline__key--work">Industry</span>
+    <span class="timeline__key timeline__key--research">Research</span>
+    <span class="timeline__key timeline__key--education">Education</span>
+  </p>
+</div>
