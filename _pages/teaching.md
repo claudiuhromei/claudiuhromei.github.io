@@ -25,7 +25,7 @@ processes.
 Recorded presentations of my papers, free to watch on Underline.
 
 - **Grounded Semantic Role Labelling from Synthetic Multimodal Data for Situated Robot Commands**, EMNLP 2025,
-  Suzhou. [Video](https://underline.io/lecture/130964-grounded-semantic-role-labelling-from-synthetic-multimodal-data-for-situated-robot-commands) ·
+  Suzhou. [Video](https://underline.io/events/502/sessions/20800/lecture/130964-grounded-semantic-role-labelling-from-synthetic-multimodal-data-for-situated-robot-commands) ·
   [Paper](https://aclanthology.org/2025.emnlp-main.1212/)
 - **Training Multi-Modal LLMs through Dialogue Planning for HRI**, ACL 2025 (Findings), Vienna.
   [Video](https://underline.io/lecture/121996-training-multi-modal-llms-through-dialogue-planning-for-hri) ·

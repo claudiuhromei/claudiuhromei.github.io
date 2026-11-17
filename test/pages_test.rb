@@ -89,7 +89,14 @@ class PagesTest < Minitest::Test
 
   def test_conference_presentations_link_to_their_videos
     links = page("teaching/index.html").css(".page__content a").select { |a| a.text == "Video" }
-    assert_equal %w[130964 121996 46881], links.map { |a| a["href"][%r{\Ahttps://underline\.io/lecture/(\d+)-}, 1] }
+    assert_equal %w[130964 121996 46881], links.map { |a| a["href"][%r{\Ahttps://underline\.io/(?:events/\d+/sessions/\d+/)?lecture/(\d+)-}, 1] }
+  end
+
+  def test_profiles_with_a_brand_icon_use_it
+    icons = page("index.html").css(".author__urls a").to_h { |a| [a["href"], a.at_css("i")&.[]("class").to_s] }
+    assert_includes icons["https://huggingface.co/cdh"], "fa-hugging-face"
+    assert_includes icons["https://www.linkedin.com/in/cdhromei/"], "fa-linkedin"
+    assert_includes icons["https://orcid.org/0009-0000-8204-5023"], "fa-orcid"
   end
 
   def test_author_sidebar_links_to_confirmed_profiles
@@ -97,6 +104,7 @@ class PagesTest < Minitest::Test
     assert_includes hrefs, "https://www.linkedin.com/in/cdhromei/"
     assert_includes hrefs, "https://scholar.google.it/citations?user=YQRKKFoAAAAJ"
     assert_includes hrefs, "https://huggingface.co/cdh"
+    assert_includes hrefs, "https://openreview.net/profile?id=%7EClaudiu_Daniel_Hromei1"
     assert_includes hrefs, "https://orcid.org/0009-0000-8204-5023"
     assert_includes hrefs, "https://dblp.org/pid/309/5387.html"
     assert_includes hrefs, "https://www.semanticscholar.org/author/2148228904"
