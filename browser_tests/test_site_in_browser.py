@@ -28,7 +28,7 @@ def test_open_citation_does_not_widen_the_page_on_a_phone(open_page):
 def test_project_figures_fit_the_text_column_and_half_a_screen(open_page, width):
     page = open_page("/projects/", width)
     images = page.locator(".project-figure img")
-    assert images.count() == 5
+    assert images.count() == 6
     paragraph = page.locator(".page__content > p").first.bounding_box()
     rem = page.evaluate("parseFloat(getComputedStyle(document.documentElement).fontSize)")
     for index in range(images.count()):

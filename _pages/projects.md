@@ -12,6 +12,14 @@ Open source code and models from my research. The models are published on the
 Official code for the EMNLP 2025 paper. A pipeline that uses diffusion models and LLMs to generate more than
 11,000 synthetic grounded commands for training robots.
 
+A command such as *"take the phone on the bed"* is ambiguous. If the phone is already on the bed, as in the
+picture below, the robot only has to pick it up. If it is somewhere else, the robot has to fetch it and bring
+it to the bed. To tell the two apart, the model links the words of the command to what the robot sees.
+
+{% include project-figure.html image="situated-g-srl-scene.jpg" width="883" height="624"
+   alt="A smartphone lying on a bed in a bedroom, marked by a bounding box labelled 'phone'."
+   source="The phone of the command, located in the robot's view. Figure from [Hromei et al., EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1212/)." %}
+
 {% include project-figure.html image="situated-g-srl.png" width="506" height="642"
    alt="Flow chart of the data generation pipeline: a command and its logical form give constraints, an LLM writes image prompts, generated images are validated against the constraints by detection and visual question answering, then ranked into the final image set."
    source="Data generation pipeline. Figure from [Hromei et al., EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1212/)." %}
