@@ -9,7 +9,8 @@ class TimelineTest < Minitest::Test
 
   SECTIONS = {
     "Professional experience" => ["Senior AI Scientist (Finance)", "Postdoc Volunteer Researcher", "R&D Researcher (NLU & HRI)"],
-    "Education" => ["Ph.D. in Artificial Intelligence", "M.Sc. in Computer Science (Artificial Intelligence)"]
+    "Education" => ["Ph.D. in Artificial Intelligence", "M.Sc. in Computer Science (Artificial Intelligence)",
+                    "B.Sc. in Computer Science"]
   }.freeze
 
   def test_each_section_is_a_timeline_of_its_entries_most_recent_first

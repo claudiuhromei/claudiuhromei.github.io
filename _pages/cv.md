@@ -33,7 +33,7 @@ enterprise AI adoption and agentic AI to Tier-1 public and private organisations
 | Period | Role | Organisation |
 |--------|------|--------------|
 | May 2025 – present | Senior AI Scientist (Finance) | BIP (Business Integration Partners) |
-| June 2025 – present | Postdoc Volunteer Researcher | University of Rome Tor Vergata |
+| June 2025 – present | Postdoc Volunteer Researcher | University of Rome Tor Vergata, [SAG ART group]({{ site.sag_group_url }}) |
 | Nov 2020 – Apr 2025 | R&D Researcher (NLU & HRI) | REVEAL SRL |
 
 Details are on the [Experience]({{ '/experience/' | relative_url }}) page.
@@ -44,6 +44,7 @@ Details are on the [Experience]({{ '/experience/' | relative_url }}) page.
 |--------|--------|-------------|
 | Nov 2021 – June 2025 | Ph.D. in Artificial Intelligence | National Ph.D. Programme in AI, University of Rome Tor Vergata & Campus Bio-Medico of Rome |
 | 2018 – 2021 | M.Sc. in Computer Science (Artificial Intelligence), 110/110 cum laude | University of Rome Tor Vergata |
+| 2014 – 2018 | B.Sc. in Computer Science | University of Rome Tor Vergata |
 
 ## More
 

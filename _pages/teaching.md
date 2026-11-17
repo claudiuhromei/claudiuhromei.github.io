@@ -39,7 +39,7 @@ Recorded presentations of my papers, free to watch on Underline, with the slides
 
 ## University teaching
 
-*University of Rome Tor Vergata*
+*University of Rome Tor Vergata, [SAG ART group]({{ site.sag_group_url }})*
 
 - **Teaching Assistant, Artificial Intelligence & Deep Learning** (2021 – present): neural networks,
   Transformers and knowledge representation for Master's students in Computer Science and Data Science.
