@@ -25,6 +25,13 @@ class NewsTest < Minitest::Test
     assert_equal @archive_items.first(HOME_LIMIT), @home_items
   end
 
+  # Career milestones carry their exact date in the file name (the date of the post).
+  def test_milestones_are_dated_on_the_day_they_happened
+    { "joined-bip" => "2025-05-05", "phd-completed" => "2025-06-03" }.each do |slug, date|
+      assert_equal ["#{date}-#{slug}.md"], post_files.map { |f| File.basename(f) }.grep(/-#{slug}\.md\z/)
+    end
+  end
+
   def test_home_links_to_the_archive
     hrefs = page("index.html").css(".page__content a").map { |a| a["href"] }
     assert_includes hrefs, "/news/"

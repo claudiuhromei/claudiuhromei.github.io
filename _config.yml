@@ -87,6 +87,7 @@ exclude:
   - .bundle
   - .github
   - BLOGGING.md
+  - SITE_GUIDE.md
   - .jekyll-cache
   - .sass-cache
   - .venv
