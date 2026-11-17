@@ -69,6 +69,7 @@ class PagesTest < Minitest::Test
     "MM-IGLU" => %w[https://aclanthology.org/2025.findings-acl.837/],
     "ExtremITA" => %w[https://github.com/crux82/ExtremITA],
     "U-DepPLLaMA" => %w[https://aclanthology.org/2023.clicit-1.30/],
+    "GrUT" => %w[/assets/files/slides/phd-defense-slides.pdf],
     "HeAL9000" => %w[https://ceur-ws.org/Vol-3060/paper-4.pdf]
   }.freeze
 
@@ -106,6 +107,35 @@ class PagesTest < Minitest::Test
   def test_conference_presentations_link_to_their_videos
     links = page("teaching/index.html").css(".page__content a").select { |a| a.text == "Video" }
     assert_equal %w[130964 121996 46881], links.map { |a| a["href"][%r{\Ahttps://underline\.io/(?:events/\d+/sessions/\d+/)?lecture/(\d+)-}, 1] }
+  end
+
+  def test_conference_presentations_link_to_their_slides_or_poster
+    links = page("teaching/index.html").css(".page__content a").select { |a| %w[Slides Poster].include?(a.text) }
+    assert_equal %w[Slides Poster Slides], links.map(&:text)
+    links.each { |a| assert File.exist?(site_path(a["href"].delete_prefix("/"))), "#{a['href']} not published" }
+  end
+
+  def test_phd_defence_slides_are_linked_from_the_education_timeline
+    link = page("experience/index.html").css(".timeline a").find { |a| a["href"].end_with?("phd-defense-slides.pdf") }
+    refute_nil link, "defence slides not linked"
+    assert File.exist?(site_path(link["href"].delete_prefix("/")))
+    assert_includes link.parent.text, "supplementary slides"
+  end
+
+  def test_now_section_covers_industry_research_and_theses_and_invites_contact
+    section = home.css(".page__content > *").drop_while { |node| node.text.strip != "Now" }
+                  .take_while { |node| node.text.strip != "Selected publications" }
+    text = section.map(&:text).join(" ")
+    ["In industry.", "In research.", "Theses I supervise.", "Open to"].each { |part| assert_includes text, part }
+    contact = section.flat_map { |node| node.css("a.js-contact").to_a }.first
+    refute_nil contact, "the Now section must offer the obfuscated email link"
+    refute_includes contact.to_html, "@"
+  end
+
+  def test_reviewing_lists_venues_and_journals
+    text = page("service/index.html").at_css(".page__content").text
+    ["Senior Program Committee", "ACL Rolling Review", "EACL", "CLiC-it", "AIxIA", "CIKM 2026", "I-RIM 2021",
+     "NL4AI", "IJCoL", "Intelligenza Artificiale"].each { |venue| assert_includes text, venue }
   end
 
   def test_profiles_with_a_brand_icon_use_it

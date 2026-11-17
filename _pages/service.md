@@ -17,3 +17,17 @@ description: "Awards and academic service of Claudiu Daniel Hromei."
   University of Rome Tor Vergata (2021 – present).
 - **Tutorials:** co-organiser of the tutorial on instruction tuning Large Language Models at CLiC-it 2023 (see
   [Teaching & Talks]({{ '/teaching/' | relative_url }})).
+
+## Reviewing
+
+- **Senior Program Committee:** CLiC-it 2025, the Italian Conference on Computational Linguistics.
+- **Conferences:**
+  - ACL Rolling Review (ARR), mainly for ACL, 2024 – present
+  - EACL, demo track, 2022 – present
+  - CLiC-it, 2022 – present
+  - AIxIA, the conference of the Italian Association for Artificial Intelligence, 2021 – present
+  - CIKM 2026
+  - I-RIM 2021, the Italian conference on robotics and intelligent machines
+- **Workshops:** NL4AI, Workshop on Natural Language for Artificial Intelligence, 2022 – present.
+- **Journals:** Italian Journal of Computational Linguistics (IJCoL) and Intelligenza Artificiale,
+  2021 – present.

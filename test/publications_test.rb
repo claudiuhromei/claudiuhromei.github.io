@@ -71,6 +71,20 @@ class PublicationsTest < Minitest::Test
     assert_equal with_video.size, @content.css(".publication__links > a").count { |link| link.text == "Video" }
   end
 
+  # Slides and posters are published by the site itself (tools/make_public_slides.py).
+  def test_presented_slides_and_posters_are_linked_and_published
+    { "slides" => "Slides", "poster" => "Poster" }.each do |field, label|
+      entries = bibtex_entries.select { |_key, fields| fields[field] }
+      assert_operator entries.size, :>=, 1, "no entry has #{field}"
+      entries.each do |key, fields|
+        link = rendered(key).css(".publication__links > a").find { |a| a.text == label }
+        refute_nil link, "#{label} link not rendered for #{key}"
+        assert_equal fields[field], link["href"]
+        assert File.exist?(site_path(link["href"].delete_prefix("/"))), "#{link['href']} not published"
+      end
+    end
+  end
+
   def test_abstract_is_shown_for_every_entry_that_has_one
     with_abstract = bibtex_entries.select { |_key, fields| fields["abstract"] }
     assert_operator with_abstract.size, :>=, 20
@@ -94,7 +108,7 @@ class PublicationsTest < Minitest::Test
       refute_nil bibtex, "BibTeX not rendered for #{key}"
       assert_match(/\A@\w+\{#{Regexp.escape(key)},/, bibtex.text.strip)
       assert_includes bibtex.text, "author = {"
-      %w[abstract pdf code video award selected].each do |field|
+      %w[abstract pdf code video slides poster award selected].each do |field|
         refute_match(/^\s*#{field}\s*=/, bibtex.text, "#{field} must not appear in the BibTeX of #{key}")
       end
     end

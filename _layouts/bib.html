@@ -20,6 +20,12 @@
     {%- if entry.video %}
     <a href="{{ entry.video }}">Video</a>
     {%- endif %}
+    {%- if entry.slides %}
+    <a href="{{ entry.slides | relative_url }}">Slides</a>
+    {%- endif %}
+    {%- if entry.poster %}
+    <a href="{{ entry.poster | relative_url }}">Poster</a>
+    {%- endif %}
     {%- if entry.abstract %}
     <details class="publication__abstract">
       <summary>Abstract</summary>

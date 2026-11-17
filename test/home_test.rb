@@ -15,7 +15,7 @@ class HomeTest < Minitest::Test
   end
 
   def test_sections_come_in_the_expected_order
-    assert_equal ["Highlights", "Selected publications", "News"], @content.css("h2").map { |h2| h2.text.strip }
+    assert_equal ["Highlights", "Now", "Selected publications", "News"], @content.css("h2").map { |h2| h2.text.strip }
   end
 
   def test_every_highlight_is_rendered_as_a_card

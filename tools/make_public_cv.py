@@ -52,23 +52,38 @@ def is_private_link(uri: str | None) -> bool:
     return uri.lower().startswith(PRIVATE_LINK_PREFIXES) or bool(private_matches(uri))
 
 
-def redact_page(page: pymupdf.Page) -> int:
-    """Remove private text and links from one page; return how many items were removed."""
+def redact_page(
+    page: pymupdf.Page, icon_margin: float = ICON_MARGIN, background: tuple[float, ...] | None = PAGE_BACKGROUND
+) -> int:
+    """Remove private text and links from one page; return how many items were removed.
+
+    ``icon_margin`` widens each redaction to the left, over the icon that precedes the text.
+    With ``background`` (a plain page colour) images under the text are removed and the area is
+    painted over; with ``None`` (pages drawn on pictures or gradients) only the text and the line
+    art inside the area go, and the picture is kept.
+    """
     removed = 0
     areas = []
     for match in set(private_matches(page.get_text())):
         for rect in page.search_for(match):
-            areas.append(pymupdf.Rect(rect.x0 - ICON_MARGIN, rect.y0, rect.x1, rect.y1 + UNDERLINE_MARGIN))
-            page.add_redact_annot(areas[-1])
+            areas.append(pymupdf.Rect(rect.x0 - icon_margin, rect.y0, rect.x1, rect.y1 + UNDERLINE_MARGIN))
+            page.add_redact_annot(areas[-1], fill=background if background else False)
             removed += 1
     for link in page.get_links():
         if is_private_link(link.get("uri")):
             page.delete_link(link)
             removed += 1
+    if not areas:
+        return removed
+    if background is None:
+        page.apply_redactions(
+            images=pymupdf.PDF_REDACT_IMAGE_NONE, graphics=pymupdf.PDF_REDACT_LINE_ART_REMOVE_IF_COVERED
+        )
+        return removed
     page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_REMOVE)
     # Redaction removes text and images; line art such as link underlines is painted over.
     for area in areas:
-        page.draw_rect(area, color=None, fill=PAGE_BACKGROUND, overlay=True)
+        page.draw_rect(area, color=None, fill=background, overlay=True)
     return removed
 
 

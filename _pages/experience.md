@@ -59,6 +59,8 @@ of Rome*
 - **Thesis:** *Situated Natural Language Understanding in Human-Robot Interaction via Large Language Models*
 - **Focus:** multimodal LLMs (text and vision) that ground human-robot interaction in real-world contexts and
   enhance situational awareness.
+- **Defence:** [slides]({{ '/assets/files/slides/phd-defense-slides.pdf' | relative_url }}) (PDF, 7 MB). They
+  contain the work I presented and defended, followed by supplementary slides on my other publications.
 
 ### M.Sc. in Computer Science (Artificial Intelligence)
 

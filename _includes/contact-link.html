@@ -1,0 +1,11 @@
+{%- comment -%}
+  Email link. The address is never written in the HTML: its two halves are stored reversed in data attributes
+  and assembled by assets/js/contact.js when the visitor clicks the link, which then shows the address in place
+  of the text. Parameters: text (link text), icon (optional Font Awesome classes).
+{%- endcomment -%}
+{%- assign contact = site.author.contact -%}
+{%- if contact.user_reversed and contact.domain_reversed -%}
+<a href="#" role="button" class="js-contact" data-user="{{ contact.user_reversed }}" data-domain="{{ contact.domain_reversed }}">
+  {%- if include.icon %}<i class="{{ include.icon }}" aria-hidden="true"></i>{% endif -%}
+  <span class="label">{{ include.text }}</span></a>
+{%- endif -%}

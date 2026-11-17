@@ -60,7 +60,7 @@ class SiteTest < Minitest::Test
   end
 
   def test_repo_only_files_are_not_published
-    %w[CLAUDE.md roadmap.md README.md Gemfile Rakefile].each do |file|
+    %w[CLAUDE.md roadmap.md BLOGGING.md README.md Gemfile Rakefile].each do |file|
       refute File.exist?(site_path(file)), "#{file} must not be published"
     end
     refute Dir.exist?(site_path("test")), "test/ must not be published"
