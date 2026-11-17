@@ -202,3 +202,15 @@ def test_printed_cv_shows_only_the_content_in_black_on_white(open_page, scheme):
     viewport = page.viewport_size["width"]
     content = page.locator(".page__content").bounding_box()
     assert content["x"] < 40 and content["width"] > viewport - 80, "printed content must use the full width"
+
+
+def test_icon_font_passes_its_integrity_check_and_draws_the_icons(open_page):
+    # A wrong Subresource Integrity hash makes the browser drop the stylesheet: icons would vanish.
+    page = open_page("/", DESKTOP)
+    page.wait_for_function(
+        "[...document.styleSheets].some(sheet => (sheet.href || '').includes('fontawesome-free'))"
+    )
+    content = page.evaluate(
+        "getComputedStyle(document.querySelector('.author__urls .fa-envelope'), '::before').content"
+    )
+    assert content not in ("none", "normal", "")

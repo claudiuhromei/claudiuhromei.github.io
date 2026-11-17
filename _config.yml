@@ -39,6 +39,13 @@ social:
     - "https://huggingface.co/cdh"
     - "https://openreview.net/profile?id=%7EClaudiu_Daniel_Hromei1"
 
+# Font Awesome, loaded from jsDelivr with a fixed version and its Subresource Integrity hash
+# (_includes/head.html). To update, set the version and recompute the hash:
+#   curl -s https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@<version>/css/all.min.css \
+#     | openssl dgst -sha384 -binary | openssl base64 -A
+fa_version: "7.3.1"
+fa_integrity: "sha384-qrALq7+6jBOZIQsNnT6xGkMDru64qD6uTlDra39xrt2SoXl4pO3FX6Roz/RpR/BS"
+
 # Research group at the University of Rome Tor Vergata, linked wherever the site mentions the collaboration.
 # The group's site has no HTTPS version (allowed in the Rakefile's link check).
 sag_group_url: "http://sag.art.uniroma2.it/people"

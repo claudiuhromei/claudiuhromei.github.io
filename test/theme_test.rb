@@ -109,6 +109,17 @@ class ThemeTest < Minitest::Test
     assert_equal "Switch to dark theme", theme_js("toggleLabel", "light")
   end
 
+  # The icon font comes from a CDN: a fixed version, checked by the browser against its hash.
+  def test_font_awesome_is_pinned_and_integrity_checked
+    links = page("index.html").css("link[href*='fontawesome-free']")
+    refute_empty links
+    links.each do |link|
+      assert_match(%r{fontawesome-free@\d+\.\d+\.\d+/}, link["href"], "Font Awesome must not be loaded as @latest")
+      assert_match(/\Asha384-[A-Za-z0-9+\/]{64}\z/, link["integrity"].to_s)
+      assert_equal "anonymous", link["crossorigin"]
+    end
+  end
+
   private
 
   # Calls a function exported by assets/js/theme.js through Node and returns its result.
