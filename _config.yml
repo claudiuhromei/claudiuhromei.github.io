@@ -86,6 +86,7 @@ include:
 exclude:
   - .bundle
   - .github
+  - BLOGGING.md
   - .jekyll-cache
   - .sass-cache
   - .venv
@@ -145,7 +146,7 @@ scholar:
   group_order: descending
   replace_strings: true
   # Fields left out of the BibTeX shown under "Cite" (site-only fields and the long abstract).
-  bibtex_skip_fields: [abstract, pdf, code, video, award, selected]
+  bibtex_skip_fields: [abstract, pdf, code, video, slides, poster, award, selected]
   join_strings: true
 
 # Front matter defaults
@@ -166,3 +167,22 @@ defaults:
       show_date: false
       share: false
       related: false
+  - scope:
+      path: ""
+      type: blog
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      show_date: true
+      share: true
+      related: false
+      toc: true
+      toc_sticky: true
+
+# Technical blog: one Markdown file per post in _blog/. Hidden for now: `output: false` keeps the posts out
+# of the site and _pages/blog.md is not published. To launch it, see the owner's local notes.
+collections:
+  blog:
+    output: false
+    permalink: /blog/:year/:month/:title/

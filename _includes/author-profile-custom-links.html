@@ -1,13 +1,10 @@
 {%- comment -%}
-  Email link for the author sidebar. The address is never written in the HTML: its two halves are stored
-  reversed in data attributes and assembled by assets/js/contact.js when the visitor clicks the link.
-  It is a link and not a <button> because the theme hides sidebar buttons on wide screens.
+  Email link for the author sidebar (see contact-link.html). It is a link and not a <button> because the theme
+  hides sidebar buttons on wide screens.
 {%- endcomment -%}
 {%- assign contact = site.author.contact -%}
 {%- if contact.user_reversed and contact.domain_reversed %}
 <li>
-  <a href="#" role="button" class="js-contact" data-user="{{ contact.user_reversed }}" data-domain="{{ contact.domain_reversed }}">
-    <i class="fas fa-fw fa-envelope" aria-hidden="true"></i><span class="label">Email</span>
-  </a>
+  {% include contact-link.html text="Email" icon="fas fa-fw fa-envelope" %}
 </li>
 {%- endif %}

@@ -22,16 +22,19 @@ processes.
 
 ### Conference presentations
 
-Recorded presentations of my papers, free to watch on Underline.
+Recorded presentations of my papers, free to watch on Underline, with the slides or the poster I presented.
 
 - **Grounded Semantic Role Labelling from Synthetic Multimodal Data for Situated Robot Commands**, EMNLP 2025,
   Suzhou. [Video](https://underline.io/events/502/sessions/20800/lecture/130964-grounded-semantic-role-labelling-from-synthetic-multimodal-data-for-situated-robot-commands) ·
+  [Slides]({{ '/assets/files/slides/emnlp2025-grounded-srl-slides.pdf' | relative_url }}) ·
   [Paper](https://aclanthology.org/2025.emnlp-main.1212/)
 - **Training Multi-Modal LLMs through Dialogue Planning for HRI**, ACL 2025 (Findings), Vienna.
   [Video](https://underline.io/lecture/121996-training-multi-modal-llms-through-dialogue-planning-for-hri) ·
+  [Poster]({{ '/assets/files/slides/acl2025-dialogue-planning-poster.pdf' | relative_url }}) ·
   [Paper](https://aclanthology.org/2025.findings-acl.837/)
 - **HeAL9000: an Intelligent Rehabilitation Robot**, SMARTERCARE workshop at AIxIA 2021.
   [Video](https://underline.io/lecture/46881-heal9000-an-intelligent-rehabilitation-robot) ·
+  [Slides]({{ '/assets/files/slides/smartercare2021-heal9000-slides.pdf' | relative_url }}) ·
   [Paper](https://ceur-ws.org/Vol-3060/paper-4.pdf)
 
 ## University teaching

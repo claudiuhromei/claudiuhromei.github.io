@@ -66,6 +66,10 @@ syntactic parsing without specialised heads.
 commands through Grounded Semantic Role Labelling. It pre-dates the ChatGPT era and applies Transformer-based
 sequence-to-sequence models to situated Human-Robot Interaction.
 
+{% include project-figure.html image="grut.png" width="1200" height="736"
+   alt="Pipeline diagram: the command 'Take the volume on the table near the window' and a room map whose objects (books, tables, a window, a cup, a chair) carry identifiers, types and positions go into a linguistic extraction step; it writes a map description in natural language, such as 'b1, also known as book or volume, is an instance of the class BOOK' and 'b1 is near t1', which is appended to the command and given to a Transformer that outputs TAKING(Theme(b1))."
+   source="The overall flow, from my [Ph.D. defence slides](/assets/files/slides/phd-defense-slides.pdf); the Transformer diagram is from [Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)." %}
+
 [Code on GitHub](https://github.com/crux82/grut)
 
 ## HeAL9000
