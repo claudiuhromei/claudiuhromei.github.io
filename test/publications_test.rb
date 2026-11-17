@@ -59,6 +59,18 @@ class PublicationsTest < Minitest::Test
     end
   end
 
+  def test_recorded_talks_are_linked_as_videos
+    with_video = bibtex_entries.select { |_key, fields| fields["video"] }
+    assert_operator with_video.size, :>=, 3
+    with_video.each do |key, fields|
+      video = rendered(key).css(".publication__links > a").find { |link| link.text == "Video" }
+      refute_nil video, "video link not rendered for #{key}"
+      assert_equal fields["video"], video["href"]
+      assert video["href"].start_with?("https://"), "video link is not https: #{video['href']}"
+    end
+    assert_equal with_video.size, @content.css(".publication__links > a").count { |link| link.text == "Video" }
+  end
+
   def test_abstract_is_shown_for_every_entry_that_has_one
     with_abstract = bibtex_entries.select { |_key, fields| fields["abstract"] }
     assert_operator with_abstract.size, :>=, 20
@@ -82,7 +94,7 @@ class PublicationsTest < Minitest::Test
       refute_nil bibtex, "BibTeX not rendered for #{key}"
       assert_match(/\A@\w+\{#{Regexp.escape(key)},/, bibtex.text.strip)
       assert_includes bibtex.text, "author = {"
-      %w[abstract pdf code award].each do |field|
+      %w[abstract pdf code video award selected].each do |field|
         refute_match(/^\s*#{field}\s*=/, bibtex.text, "#{field} must not appear in the BibTeX of #{key}")
       end
     end

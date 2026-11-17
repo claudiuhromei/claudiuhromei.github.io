@@ -12,7 +12,7 @@ class PagesTest < Minitest::Test
     "/experience/" => ["Experience", "Experience", ["BIP", "REVEAL SRL", "Ph.D. in Artificial Intelligence", "2018 – 2021 · University of Rome Tor Vergata"]],
     "/projects/" => ["Projects", "Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
     "/publications/" => ["Publications", "Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
-    "/teaching/" => ["Teaching & Talks", "Teaching", ["Corporate AI training", "CLiC-it 2023", "Thesis supervision"]],
+    "/teaching/" => ["Teaching & Talks", "Teaching", ["Corporate AI training", "CLiC-it 2023", "Conference presentations", "EMNLP 2025", "Thesis supervision"]],
     "/service/" => ["Awards & Service", "Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
     "/cv/" => ["CV", "CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]],
     "/news/" => ["News", nil, ["Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
@@ -85,6 +85,11 @@ class PagesTest < Minitest::Test
       assert_equal png_size(path), [image["width"].to_i, image["height"].to_i], "#{heading}: wrong width/height"
       assert_includes figure.css("figcaption a").map { |a| a["href"] }, PROJECT_FIGURES.fetch(heading)
     end
+  end
+
+  def test_conference_presentations_link_to_their_videos
+    links = page("teaching/index.html").css(".page__content a").select { |a| a.text == "Video" }
+    assert_equal %w[130964 121996 46881], links.map { |a| a["href"][%r{\Ahttps://underline\.io/lecture/(\d+)-}, 1] }
   end
 
   def test_author_sidebar_links_to_confirmed_profiles

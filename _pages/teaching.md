@@ -20,6 +20,20 @@ processes.
   Alpaca. [Announcement (archived)](https://web.archive.org/web/20260515172452/https://clic2023.ilc.cnr.it/tutorial/) ·
   [Code on GitHub](https://github.com/crux82/CLiC-it_2023_tutorial)
 
+### Conference presentations
+
+Recorded presentations of my papers, free to watch on Underline.
+
+- **Grounded Semantic Role Labelling from Synthetic Multimodal Data for Situated Robot Commands**, EMNLP 2025,
+  Suzhou. [Video](https://underline.io/lecture/130964-grounded-semantic-role-labelling-from-synthetic-multimodal-data-for-situated-robot-commands) ·
+  [Paper](https://aclanthology.org/2025.emnlp-main.1212/)
+- **Training Multi-Modal LLMs through Dialogue Planning for HRI**, ACL 2025 (Findings), Vienna.
+  [Video](https://underline.io/lecture/121996-training-multi-modal-llms-through-dialogue-planning-for-hri) ·
+  [Paper](https://aclanthology.org/2025.findings-acl.837/)
+- **HeAL9000: an Intelligent Rehabilitation Robot**, SMARTERCARE workshop at AIxIA 2021.
+  [Video](https://underline.io/lecture/46881-heal9000-an-intelligent-rehabilitation-robot) ·
+  [Paper](https://ceur-ws.org/Vol-3060/paper-4.pdf)
+
 ## University teaching
 
 *University of Rome Tor Vergata*

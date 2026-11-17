@@ -139,7 +139,7 @@ scholar:
   group_order: descending
   replace_strings: true
   # Fields left out of the BibTeX shown under "Cite" (site-only fields and the long abstract).
-  bibtex_skip_fields: [abstract, pdf, code, award, selected]
+  bibtex_skip_fields: [abstract, pdf, code, video, award, selected]
   join_strings: true
 
 # Front matter defaults
