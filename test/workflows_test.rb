@@ -35,6 +35,20 @@ class WorkflowsTest < Minitest::Test
     assert_includes run_steps, "bundle exec rake test"
   end
 
+  # A moved tag of a third-party action could run any code with the workflow's permissions.
+  def test_every_action_is_pinned_to_a_commit
+    Dir.glob(File.join(ROOT, ".github/workflows/*.yml")).each do |file|
+      File.read(file, encoding: "utf-8").scan(/uses:\s*(\S+)/).flatten.each do |action|
+        assert_match(/@[0-9a-f]{40}\z/, action, "#{File.basename(file)}: #{action} is not pinned to a commit SHA")
+      end
+    end
+  end
+
+  def test_dependabot_keeps_actions_and_gems_up_to_date
+    config = YAML.safe_load(File.read(File.join(ROOT, ".github/dependabot.yml"), encoding: "utf-8"))
+    assert_equal %w[bundler github-actions], config.fetch("updates").map { |u| u.fetch("package-ecosystem") }.sort
+  end
+
   def test_link_checker_tolerates_sites_that_block_automated_clients
     rakefile = File.read(File.join(ROOT, "Rakefile"), encoding: "utf-8")
     assert_match(/BOT_BLOCKED_STATUS_CODES = \[403, 429, 999\]/, rakefile)
