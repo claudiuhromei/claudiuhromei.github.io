@@ -46,6 +46,14 @@ class SiteTest < Minitest::Test
     assert File.exist?(site_path(icon["href"].delete_prefix("/"))), "favicon file not published"
   end
 
+  # Initials on the green of the light theme's header.
+  def test_favicon_shows_the_initials_on_the_site_accent
+    svg = Nokogiri::XML(File.read(site_path("assets/images/favicon.svg"), encoding: "utf-8"))
+    svg.remove_namespaces!
+    assert_equal "#006b3f", svg.at_xpath("//rect")["fill"]
+    assert_equal "CDH", svg.at_xpath("//text").text.strip
+  end
+
   def test_feed_and_sitemap_are_generated
     assert File.exist?(site_path("feed.xml")), "feed.xml missing"
     assert File.exist?(site_path("sitemap.xml")), "sitemap.xml missing"
