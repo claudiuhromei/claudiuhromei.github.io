@@ -319,6 +319,44 @@ $site-text-measure: 37em;
   background-color: transparent;
 }
 
+// Vertical timeline on the Experience page: a line down the left of each section with a dot beside
+// every role or degree (the h3 headings), most recent first. The text inside keeps the readable measure.
+$timeline-indent: 1.6rem;
+$timeline-dot: 0.8rem;
+
+.timeline {
+  margin: 0 0 2em 0.4rem;
+  padding-left: $timeline-indent;
+  border-left: 2px solid mix($site-accent, $background-color, 40%);
+
+  > h3 {
+    position: relative;
+    margin-top: 1.75em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    // Centred on the line (which runs 2px wide just left of the padding).
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.3em;
+      left: calc(-#{$timeline-indent} - 1px - #{$timeline-dot} / 2);
+      width: $timeline-dot;
+      height: $timeline-dot;
+      border-radius: 50%;
+      background-color: $site-accent;
+      box-shadow: 0 0 0 3px $background-color;
+    }
+  }
+
+  > p,
+  > ul {
+    max-width: $site-text-measure;
+  }
+}
+
 // Printing (mainly the CV page): only the content, full width, black on white.
 @media print {
   .masthead,

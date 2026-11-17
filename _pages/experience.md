@@ -6,6 +6,8 @@ description: "Professional experience and education of Claudiu Daniel Hromei."
 
 ## Professional experience
 
+<div class="timeline" markdown="1">
+
 ### Senior AI Scientist (Finance) · BIP (Business Integration Partners)
 
 *May 2025 – present*
@@ -43,7 +45,11 @@ projects and serve as a teaching assistant for several university courses (see
   understanding modules into a robotic platform for patient rehabilitation, enhancing its cognitive
   interaction capabilities.
 
+</div>
+
 ## Education
+
+<div class="timeline" markdown="1">
 
 ### Ph.D. in Artificial Intelligence
 
@@ -59,3 +65,5 @@ of Rome*
 *2018 – 2021 · University of Rome Tor Vergata*
 
 - **Grade:** 110/110 cum laude. Specialised in AI, deep learning and advanced algorithms.
+
+</div>
