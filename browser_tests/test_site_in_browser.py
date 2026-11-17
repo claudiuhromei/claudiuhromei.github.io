@@ -59,7 +59,7 @@ def test_experience_timeline_dots_sit_on_the_line_beside_their_titles(open_page,
             return {offset: Math.abs(centre - line), top: parseFloat(dot.top), height: box.height};
         })"""
     )
-    assert len(dots) == 5
+    assert len(dots) == 6
     for dot in dots:
         assert dot["offset"] <= 1, "dot is not centred on the line"
         assert 0 <= dot["top"] < dot["height"]

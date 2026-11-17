@@ -44,7 +44,9 @@ namespace :test do
       disable_external: ENV["CHECK_EXTERNAL"] != "1",
       enforce_https: true,
       ignore_missing_alt: false,
-      ignore_status_codes: BOT_BLOCKED_STATUS_CODES
+      ignore_status_codes: BOT_BLOCKED_STATUS_CODES,
+      # The research group's site (`sag_group_url` in _config.yml) has no HTTPS version.
+      ignore_urls: [%r{\Ahttp://sag\.art\.uniroma2\.it/}]
     ).run
   end
 end

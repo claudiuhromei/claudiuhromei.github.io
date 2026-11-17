@@ -14,7 +14,8 @@ My main interests are:
 - **Efficient adaptation of LLMs** to real-world and domain-specific applications
 
 I am currently a Senior AI Scientist at **BIP**, where I lead the development of multi-agent systems for the
-finance sector, and a volunteer postdoctoral researcher at the **University of Rome Tor Vergata**. Read more
+finance sector, and a volunteer postdoctoral researcher at the **University of Rome Tor Vergata**, in the
+[SAG ART group]({{ site.sag_group_url }}). Read more
 about my [experience]({{ '/experience/' | relative_url }}), my [projects]({{ '/projects/' | relative_url }}) and
 my [publications]({{ '/publications/' | relative_url }}).
 
@@ -47,7 +48,7 @@ a bridge, and a filter, between business and IT. I own these solutions end to en
 stakeholders, solution architecture, planning, leading the engineering team, and the integration layer that turns
 agents into a production system, from back end and user interface to document repositories and enterprise tools.
 
-**In research.** At Tor Vergata I am extending my work on ambiguous instructions
+**In research.** In the [SAG ART group]({{ site.sag_group_url }}) at Tor Vergata I am extending my work on ambiguous instructions
 ([EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1212/)) beyond text: how an agent can resolve what a
 person means by combining everything it perceives in a real environment, including vision, audio, sensor data
 and language. Some of this work is on its way to publication, so there will be more to share soon.

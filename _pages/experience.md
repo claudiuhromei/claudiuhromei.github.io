@@ -27,8 +27,8 @@ I lead the architectural design and deployment of enterprise-grade, agentic AI s
 
 *June 2025 – present*
 
-I continue my research on Human-Robot Interaction, NLP and agentic AI within the SAG research group, on a
-voluntary basis alongside my industry role. I mentor B.Sc., M.Sc. and Ph.D. students through their thesis
+I continue my research on Human-Robot Interaction, NLP and agentic AI as a member of the
+[SAG ART group]({{ site.sag_group_url }}), on a voluntary basis alongside my industry role. I mentor B.Sc., M.Sc. and Ph.D. students through their thesis
 projects and serve as a teaching assistant for several university courses (see
 [Teaching & Talks]({{ '/teaching/' | relative_url }})).
 
@@ -67,5 +67,11 @@ of Rome*
 *2018 – 2021 · University of Rome Tor Vergata*
 
 - **Grade:** 110/110 cum laude. Specialised in AI, deep learning and advanced algorithms.
+
+### B.Sc. in Computer Science
+
+*2014 – 2018 · University of Rome Tor Vergata*
+
+- **Thesis:** machine learning applied to long non-coding RNAs.
 
 </div>

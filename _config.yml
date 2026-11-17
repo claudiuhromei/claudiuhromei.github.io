@@ -39,6 +39,10 @@ social:
     - "https://huggingface.co/cdh"
     - "https://openreview.net/profile?id=%7EClaudiu_Daniel_Hromei1"
 
+# Research group at the University of Rome Tor Vergata, linked wherever the site mentions the collaboration.
+# The group's site has no HTTPS version (allowed in the Rakefile's link check).
+sag_group_url: "http://sag.art.uniroma2.it/people"
+
 # Analytics: GoatCounter site code (the "code" in https://code.goatcounter.com).
 # Set to "" to disable; the script is only added to production builds.
 goatcounter_code: "claudiuhromei"

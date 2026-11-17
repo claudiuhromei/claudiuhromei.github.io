@@ -132,6 +132,22 @@ class PagesTest < Minitest::Test
     refute_includes contact.to_html, "@"
   end
 
+  # Every mention of the collaboration with Tor Vergata names the research group and links to it.
+  def test_tor_vergata_collaboration_links_the_sag_art_group
+    %w[index.html experience/index.html cv/index.html service/index.html teaching/index.html].each do |file|
+      links = page(file).css(".page__content a").select { |a| a.text == "SAG ART group" }
+      refute_empty links, "#{file}: no link to the SAG ART group"
+      links.each { |a| assert_equal "http://sag.art.uniroma2.it/people", a["href"] }
+    end
+  end
+
+  # The figure is drawn with transparent margins: on the dark theme they must stay white to be readable.
+  def test_grut_figure_has_an_opaque_white_background
+    png = File.binread(site_path("assets/images/projects/grut.png"))
+    colour_type = png.byteslice(25).ord
+    refute_includes [4, 6], colour_type, "grut.png must not have an alpha channel"
+  end
+
   def test_reviewing_lists_venues_and_journals
     text = page("service/index.html").at_css(".page__content").text
     ["Senior Program Committee", "ACL Rolling Review", "EACL", "CLiC-it", "AIxIA", "CIKM 2026", "I-RIM 2021",
