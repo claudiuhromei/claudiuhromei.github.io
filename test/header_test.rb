@@ -39,8 +39,10 @@ class HeaderTest < Minitest::Test
     define_method("test_#{name}_header_and_page_content_share_their_edges") do
       css = File.read(site_path(path), encoding: "utf-8")
       assert_equal "flex-start", declaration(path, ".masthead .visible-links", "justify-content")
-      assert_includes css, ".masthead .site-title{min-width:calc(240px - 2rem)}"
-      assert_includes css, ".masthead .site-title{min-width:calc(300px - 2rem)}"
+      # Links have a 0.5rem margin on each side; the title is the sidebar minus 1rem minus that margin.
+      assert_equal ".5rem", declaration(path, ".masthead .visible-links a", "margin-inline")
+      assert_includes css, ".masthead .site-title{min-width:calc(240px - 1.5rem)}"
+      assert_includes css, ".masthead .site-title{min-width:calc(300px - 1.5rem)}"
       assert_includes css, "width:calc(100% - 240px)", "sidebar column must fit the site title"
       assert_equal "0", declaration(path, ".page", "padding-inline-end")
     end

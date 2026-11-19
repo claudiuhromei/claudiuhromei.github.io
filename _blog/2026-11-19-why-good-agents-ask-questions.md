@@ -3,7 +3,6 @@ title: "Take the phone on the bed: why good agents ask questions"
 date: 2026-11-19
 excerpt: "An ambiguous command to a robot and a vague change request to an enterprise assistant are the same problem. Frames, grounding and dialogue plans from my research, and how I turn them into an agent that knows when to ask and what to ask."
 tags: [agents, multimodal, hri, llm, framenet]
-published: false
 ---
 
 *"Take the phone on the bed."* Say it to a person and they will just do it. Say it to a robot and you

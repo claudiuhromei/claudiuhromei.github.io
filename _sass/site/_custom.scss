@@ -69,14 +69,22 @@
 // Header and page share the same vertical edges on wide screens: the site title takes the width of the
 // author sidebar, so the navigation starts where the page content starts, and the content runs up to
 // the right edge of the header instead of leaving the theme's empty right-hand column.
-// (Navigation links have a 1rem margin on each side, hence the 2rem.)
+// Navigation links get half the theme's 1rem margin, so that all eight entries fit on one line from 1280px
+// up. The title is the sidebar width minus 1rem minus that margin, which puts the first link's text on the
+// content's left edge (checked in browser_tests/).
+$site-nav-link-gap: 0.5rem;
+
 .masthead .visible-links {
   justify-content: flex-start;
+
+  a {
+    margin-inline: $site-nav-link-gap;
+  }
 }
 
 @include breakpoint($large) {
   .masthead .site-title {
-    min-width: calc(#{$right-sidebar-width-narrow} - 2rem);
+    min-width: calc(#{$right-sidebar-width-narrow} - #{1rem + $site-nav-link-gap});
   }
 
   .page {
@@ -92,7 +100,7 @@
 
 @include breakpoint($x-large) {
   .masthead .site-title {
-    min-width: calc(#{$right-sidebar-width} - 2rem);
+    min-width: calc(#{$right-sidebar-width} - #{1rem + $site-nav-link-gap});
   }
 
   .page:has(.sidebar__right) {

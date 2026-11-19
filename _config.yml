@@ -192,9 +192,9 @@ defaults:
       toc: true
       toc_sticky: true
 
-# Technical blog: one Markdown file per post in _blog/. Hidden for now: `output: false` keeps the posts out
-# of the site and _pages/blog.md is not published. To launch it, see the owner's local notes.
+# Technical blog: one Markdown file per post in _blog/, listed at /blog/ (_pages/blog.md). A post with
+# `published: false` (drafts, the post template) is not built.
 collections:
   blog:
-    output: false
+    output: true
     permalink: /blog/:year/:month/:title/
