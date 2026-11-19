@@ -6,7 +6,9 @@ import pytest
 from conftest import DESKTOP, PHONE, TABLET, WIDE, horizontal_overflow, page_background
 from playwright.sync_api import expect
 
-PAGES = ["/", "/experience/", "/projects/", "/publications/", "/teaching/", "/service/", "/news/", "/cv/"]
+FIRST_POST = "/blog/2026/11/why-good-agents-ask-questions/"
+PAGES = ["/", "/experience/", "/projects/", "/blog/", FIRST_POST, "/publications/", "/teaching/", "/service/",
+         "/news/", "/cv/"]
 LIGHT_BACKGROUND = "rgb(255, 255, 255)"
 DARK_BACKGROUND = "rgb(37, 42, 52)"
 
@@ -15,6 +17,16 @@ DARK_BACKGROUND = "rgb(37, 42, 52)"
 @pytest.mark.parametrize("width", [PHONE, TABLET, DESKTOP])
 def test_pages_do_not_scroll_sideways(open_page, path, width):
     assert horizontal_overflow(open_page(path, width)) == 0
+
+
+# The sticky "On this page" box sits in the right-hand column that blog posts keep (see _custom.scss).
+@pytest.mark.parametrize("width", [DESKTOP, WIDE])
+def test_post_table_of_contents_sits_beside_the_text(open_page, width):
+    page = open_page(FIRST_POST, width)
+    toc = page.locator(".sidebar__right").bounding_box()
+    text = page.locator(".page__content > p").first.bounding_box()
+    assert toc["x"] >= text["x"] + text["width"]
+    assert toc["x"] + toc["width"] <= width
 
 
 def test_open_citation_does_not_widen_the_page_on_a_phone(open_page):
@@ -114,7 +126,7 @@ def test_theme_toggle_switches_and_the_choice_survives_navigation(open_page, bas
 def test_every_navigation_entry_is_visible_on_desktop(open_page, width):
     page = open_page("/", width)
     assert page.locator(".hidden-links li").count() == 0
-    assert page.locator(".visible-links li").count() == 7
+    assert page.locator(".visible-links li").count() == 8
     expect(page.locator(".greedy-nav__toggle")).to_be_hidden()
 
 

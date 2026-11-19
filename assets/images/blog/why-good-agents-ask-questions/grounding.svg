@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" width="680" height="300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Grounding links roles to what the robot perceives</title>
+  <desc>The roles of an interpretation are linked to entities the robot can see or knows: the Theme "the phone" to the bounding box of phone p2 on the desk, the Goal "the bed" to bed b1. Roles that cannot be seen get a symbolic tag such as ROOM, PERSON or MISSING. Readings that do not fit the scene are discarded.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#006b3f"/>
+    </marker>
+  </defs>
+  <rect width="680" height="300" fill="#fff"/>
+
+  <!-- language side -->
+  <text x="20" y="30" font-size="13" font-weight="700" fill="#57606a">LANGUAGE (interpretation)</text>
+  <rect x="20" y="44" width="250" height="118" rx="8" fill="#e6f2ec" stroke="#006b3f"/>
+  <text x="36" y="72" font-size="15" font-weight="700" fill="#006b3f">BRINGING</text>
+  <text x="36" y="102" font-size="14" fill="#1f2328">Theme: “the phone”</text>
+  <text x="36" y="132" font-size="14" fill="#1f2328">Goal: “the bed”</text>
+  <rect x="20" y="180" width="250" height="66" rx="8" fill="#f6f8fa" stroke="#8c959f" stroke-dasharray="5 4"/>
+  <text x="36" y="202" font-size="15" font-weight="700" fill="#8c959f">TAKING  ✗</text>
+  <text x="36" y="221" font-size="13" fill="#8c959f">Source: “the bed”</text>
+  <text x="36" y="238" font-size="12" fill="#8c959f">discarded: no phone lies on the bed</text>
+
+  <!-- perception side -->
+  <text x="420" y="30" font-size="13" font-weight="700" fill="#57606a">PERCEPTION (what the robot sees)</text>
+  <rect x="420" y="44" width="240" height="198" rx="8" fill="#f6f8fa" stroke="#1f2328"/>
+  <!-- bed -->
+  <rect x="440" y="150" width="120" height="30" rx="5" fill="#dbe9f6" stroke="#1f2328" stroke-width="1.5"/>
+  <rect x="436" y="146" width="128" height="38" fill="none" stroke="#006b3f" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="440" y="200" font-size="12" fill="#006b3f" font-weight="700">b1 · bed</text>
+  <!-- desk + phone -->
+  <rect x="580" y="120" width="64" height="8" fill="#c9b79c" stroke="#1f2328" stroke-width="1.5"/>
+  <line x1="586" y1="128" x2="586" y2="180" stroke="#1f2328" stroke-width="2.5"/>
+  <line x1="638" y1="128" x2="638" y2="180" stroke="#1f2328" stroke-width="2.5"/>
+  <rect x="598" y="108" width="24" height="11" rx="3" fill="#1f2328"/>
+  <rect x="593" y="102" width="34" height="22" fill="none" stroke="#006b3f" stroke-width="2"/>
+  <text x="586" y="96" font-size="12" fill="#006b3f" font-weight="700">p2 · phone</text>
+  <text x="436" y="226" font-size="11" fill="#57606a">boxes: [x1, y1, x2, y2] in the image</text>
+
+  <!-- links -->
+  <path d="M215,98 C340,60 480,70 588,104" fill="none" stroke="#006b3f" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M190,128 C300,150 360,165 432,165" fill="none" stroke="#006b3f" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- symbolic tags -->
+  <text x="20" y="274" font-size="13" fill="#1f2328">Roles nobody can see are grounded symbolically:</text>
+  <g font-size="12" font-family="ui-monospace, SFMono-Regular, Consolas, monospace">
+    <rect x="330" y="260" width="64" height="22" rx="4" fill="#fff8c5" stroke="#9a6700"/><text x="362" y="275" text-anchor="middle" fill="#7d4e00">&lt;ROOM&gt;</text>
+    <rect x="402" y="260" width="78" height="22" rx="4" fill="#fff8c5" stroke="#9a6700"/><text x="441" y="275" text-anchor="middle" fill="#7d4e00">&lt;PERSON&gt;</text>
+    <rect x="488" y="260" width="84" height="22" rx="4" fill="#fff8c5" stroke="#9a6700"/><text x="530" y="275" text-anchor="middle" fill="#7d4e00">&lt;MISSING&gt;</text>
+    <rect x="580" y="260" width="80" height="22" rx="4" fill="#fff8c5" stroke="#9a6700"/><text x="620" y="275" text-anchor="middle" fill="#7d4e00">&lt;STATUS&gt;</text>
+  </g>
+</svg>

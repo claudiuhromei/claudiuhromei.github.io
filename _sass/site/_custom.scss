@@ -69,24 +69,42 @@
 // Header and page share the same vertical edges on wide screens: the site title takes the width of the
 // author sidebar, so the navigation starts where the page content starts, and the content runs up to
 // the right edge of the header instead of leaving the theme's empty right-hand column.
-// (Navigation links have a 1rem margin on each side, hence the 2rem.)
+// Navigation links get half the theme's 1rem margin, so that all eight entries fit on one line from 1280px
+// up. The title is the sidebar width minus 1rem minus that margin, which puts the first link's text on the
+// content's left edge (checked in browser_tests/).
+$site-nav-link-gap: 0.5rem;
+
 .masthead .visible-links {
   justify-content: flex-start;
+
+  a {
+    margin-inline: $site-nav-link-gap;
+  }
 }
 
 @include breakpoint($large) {
   .masthead .site-title {
-    min-width: calc(#{$right-sidebar-width-narrow} - 2rem);
+    min-width: calc(#{$right-sidebar-width-narrow} - #{1rem + $site-nav-link-gap});
   }
 
   .page {
     padding-inline-end: 0;
   }
+
+  // Pages with a table of contents (blog posts) keep the theme's right column for it: the
+  // sticky "On this page" box sits in that padding, and without it the page scrolls sideways.
+  .page:has(.sidebar__right) {
+    padding-inline-end: $right-sidebar-width-narrow;
+  }
 }
 
 @include breakpoint($x-large) {
   .masthead .site-title {
-    min-width: calc(#{$right-sidebar-width} - 2rem);
+    min-width: calc(#{$right-sidebar-width} - #{1rem + $site-nav-link-gap});
+  }
+
+  .page:has(.sidebar__right) {
+    padding-inline-end: $right-sidebar-width;
   }
 }
 
@@ -310,6 +328,11 @@ $site-text-measure: 37em;
     margin-top: 0.5em;
     font-size: $type-size-6;
   }
+}
+
+// Wide diagrams: no height cap, so that their text keeps a readable size.
+.project-figure--wide img {
+  max-height: none;
 }
 
 .project-figure--logo img {

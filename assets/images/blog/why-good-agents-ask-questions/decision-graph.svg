@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" width="680" height="380" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>The clarification decision graph</title>
+  <desc>Top row: interpret (LLM) lists the readings, ground (code) links them to the context, plan (LLM) writes what is missing, recap (LLM) says what will be done, and the result is executed or sent to human review. From ground, the request is rejected when no reading fits. From plan, three branches: lookup (code) resolves an item from the context, assume records a cheap guess, ask (LLM) puts one question with options; after each, the agent re-plans. A box at the bottom lists the policy checks done in code.</desc>
+  <defs>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2328"/>
+    </marker>
+    <marker id="mg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <rect width="680" height="380" fill="#fff"/>
+
+  <!-- legend -->
+  <rect x="15" y="12" width="18" height="14" rx="3" fill="#e6f2ec" stroke="#006b3f"/>
+  <text x="39" y="24" font-size="12" fill="#1f2328">LLM call (prompt + JSON schema)</text>
+  <rect x="245" y="12" width="18" height="14" rx="3" fill="#f6f8fa" stroke="#1f2328"/>
+  <text x="269" y="24" font-size="12" fill="#1f2328">code (grounding, tools, policy)</text>
+
+  <!-- top row -->
+  <g font-size="14" font-weight="700" text-anchor="middle">
+    <rect x="15" y="56" width="110" height="48" rx="8" fill="#e6f2ec" stroke="#006b3f"/><text x="70" y="85" fill="#006b3f">interpret</text>
+    <rect x="150" y="56" width="110" height="48" rx="8" fill="#f6f8fa" stroke="#1f2328"/><text x="205" y="85" fill="#1f2328">ground</text>
+    <rect x="285" y="56" width="110" height="48" rx="8" fill="#e6f2ec" stroke="#006b3f"/><text x="340" y="85" fill="#006b3f">plan</text>
+    <rect x="420" y="56" width="110" height="48" rx="8" fill="#e6f2ec" stroke="#006b3f"/><text x="475" y="85" fill="#006b3f">recap</text>
+    <rect x="555" y="56" width="110" height="48" rx="24" fill="#fff" stroke="#1f2328"/>
+    <text x="610" y="77" font-size="12" fill="#1f2328">execute or</text><text x="610" y="93" font-size="12" fill="#1f2328">human review</text>
+  </g>
+  <g font-size="11" fill="#57606a" text-anchor="middle">
+    <text x="70" y="120">readings as frames</text>
+    <text x="205" y="120">against the context</text>
+    <text x="340" y="120">what is missing?</text>
+    <text x="475" y="120">what will be done</text>
+  </g>
+  <g stroke="#1f2328" stroke-width="2" fill="none">
+    <line x1="125" y1="80" x2="148" y2="80" marker-end="url(#m)"/>
+    <line x1="260" y1="80" x2="283" y2="80" marker-end="url(#m)"/>
+    <line x1="395" y1="80" x2="418" y2="80" marker-end="url(#m)"/>
+    <line x1="530" y1="80" x2="553" y2="80" marker-end="url(#m)"/>
+  </g>
+  <text x="407" y="49" font-size="11" text-anchor="middle" fill="#1f2328">nothing missing</text>
+
+  <!-- reject -->
+  <rect x="15" y="196" width="110" height="40" rx="20" fill="#fff" stroke="#cf222e"/>
+  <text x="70" y="221" font-size="14" font-weight="700" text-anchor="middle" fill="#cf222e">reject</text>
+  <text x="70" y="252" font-size="11" text-anchor="middle" fill="#57606a">no reading fits</text>
+  <line x1="190" y1="128" x2="85" y2="194" stroke="#1f2328" stroke-width="2" marker-end="url(#m)"/>
+
+  <!-- branches -->
+  <rect x="140" y="180" width="525" height="108" rx="10" fill="none" stroke="#8c959f" stroke-dasharray="5 4"/>
+  <g font-size="14" font-weight="700" text-anchor="middle">
+    <rect x="155" y="196" width="150" height="44" rx="8" fill="#f6f8fa" stroke="#1f2328"/><text x="230" y="223" fill="#1f2328">lookup</text>
+    <rect x="325" y="196" width="150" height="44" rx="8" fill="#f6f8fa" stroke="#1f2328"/><text x="400" y="223" fill="#1f2328">assume</text>
+    <rect x="495" y="196" width="150" height="44" rx="8" fill="#e6f2ec" stroke="#006b3f"/><text x="570" y="223" fill="#006b3f">ask</text>
+  </g>
+  <g font-size="11" fill="#57606a" text-anchor="middle">
+    <text x="230" y="256">from context, no question</text>
+    <text x="400" y="256">cheap guess, reported</text>
+    <text x="570" y="256">one question with options</text>
+    <text x="402" y="279" fill="#1f2328">each one updates the candidates, then the agent re-plans</text>
+  </g>
+  <g stroke="#1f2328" stroke-width="2" fill="none">
+    <line x1="322" y1="128" x2="236" y2="194" marker-end="url(#m)"/>
+    <line x1="352" y1="128" x2="398" y2="194" marker-end="url(#m)"/>
+    <line x1="372" y1="128" x2="560" y2="194" marker-end="url(#m)"/>
+  </g>
+  <g font-size="11" fill="#1f2328">
+    <text x="262" y="168" text-anchor="end">“context”</text>
+    <text x="384" y="158">“assume”</text>
+    <text x="470" y="152">“user”</text>
+  </g>
+  <path d="M160,180 L286,130" fill="none" stroke="#57606a" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#mg)"/>
+
+  <!-- policy -->
+  <rect x="15" y="300" width="650" height="70" rx="8" fill="#fff8c5" stroke="#9a6700"/>
+  <g font-size="12" fill="#5c3c00">
+    <text x="30" y="320" font-weight="700">Policy lives in code, not in the prompt</text>
+    <text x="30" y="340">· invented frames and categories are dropped</text>
+    <text x="350" y="340">· no “assume” when the stakes are high</text>
+    <text x="30" y="360">· disagreeing candidates force a question</text>
+    <text x="350" y="360">· too many questions: hand over to a human</text>
+  </g>
+</svg>

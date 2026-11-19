@@ -11,11 +11,12 @@ class PagesTest < Minitest::Test
   PAGES = {
     "/experience/" => ["Experience", "Experience", ["BIP", "REVEAL SRL", "Ph.D. in Artificial Intelligence", "2018 – 2021 · University of Rome Tor Vergata"]],
     "/projects/" => ["Projects", "Projects", %w[MM-IGLU ExtremITA U-DepPLLaMA GrUT HeAL9000]],
+    "/blog/" => ["Blog", "Blog", ["why good agents ask questions"]],
     "/publications/" => ["Publications", "Publications", ["EMNLP 2025", "ACL 2025", "LREC-COLING 2024", "EVALITA 2023", "NL4AI 2022"]],
     "/teaching/" => ["Teaching & Talks", "Teaching", ["Corporate AI training", "CLiC-it 2023", "Conference presentations", "EMNLP 2025", "Thesis supervision"]],
     "/service/" => ["Awards & Service", "Awards", ["Best Paper Award, EVALITA 2023", "Best Paper Award, NL4AI 2022", "NL4AI 2024"]],
     "/cv/" => ["CV", "CV", ["Technical skills", "Certifications", "Azure AI Apps & Agents Developer"]],
-    "/news/" => ["News", nil, ["Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
+    "/news/" => ["News", nil, ["New blog post: why good agents ask questions", "Paper at EMNLP 2025", "Best Paper Award at EVALITA 2023"]]
   }.freeze
 
   PAGES.each do |permalink, (title, navigation_label, phrases)|
@@ -45,7 +46,7 @@ class PagesTest < Minitest::Test
   # Short labels keep every entry visible in the header instead of folding some into the menu.
   def test_navigation_is_short_enough_to_fit_the_header
     labels = home.css("nav.greedy-nav .visible-links a").map { |a| a.text.strip }
-    assert_operator labels.size, :<=, 7
+    assert_operator labels.size, :<=, 8
     assert_operator labels.sum(&:length), :<=, 55
   end
 
