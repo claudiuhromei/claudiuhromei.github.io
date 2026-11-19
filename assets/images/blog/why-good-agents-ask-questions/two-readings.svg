@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" width="680" height="340" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Two scenes for "take the phone on the bed"</title>
+  <desc>Left: the phone already lies on the bed, so the robot picks it up (TAKING, with the bed as Source). Right: the phone lies on the desk, so the robot brings it to the bed (BRINGING, with the bed as Goal).</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#006b3f"/>
+    </marker>
+    <g id="room">
+      <line x1="20" y1="190" x2="310" y2="190" stroke="#8c959f" stroke-width="2"/>
+      <!-- bed -->
+      <rect x="40" y="128" width="150" height="34" rx="6" fill="#dbe9f6" stroke="#1f2328" stroke-width="2"/>
+      <rect x="48" y="118" width="40" height="14" rx="5" fill="#fff" stroke="#1f2328" stroke-width="2"/>
+      <rect x="32" y="100" width="10" height="90" rx="2" fill="#c9b79c" stroke="#1f2328" stroke-width="2"/>
+      <line x1="60" y1="162" x2="60" y2="190" stroke="#1f2328" stroke-width="3"/>
+      <line x1="180" y1="162" x2="180" y2="190" stroke="#1f2328" stroke-width="3"/>
+      <text x="115" y="208" text-anchor="middle" font-size="14" fill="#57606a">bed</text>
+      <!-- desk -->
+      <rect x="225" y="122" width="80" height="10" rx="2" fill="#c9b79c" stroke="#1f2328" stroke-width="2"/>
+      <line x1="232" y1="132" x2="232" y2="190" stroke="#1f2328" stroke-width="3"/>
+      <line x1="298" y1="132" x2="298" y2="190" stroke="#1f2328" stroke-width="3"/>
+      <text x="265" y="208" text-anchor="middle" font-size="14" fill="#57606a">desk</text>
+    </g>
+    <g id="phone">
+      <rect x="0" y="0" width="26" height="12" rx="3" fill="#1f2328"/>
+      <rect x="3" y="2.5" width="20" height="7" rx="1.5" fill="#57a0d3"/>
+    </g>
+  </defs>
+  <rect width="680" height="340" fill="#fff"/>
+
+  <!-- left panel -->
+  <text x="170" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2328">The phone is on the bed</text>
+  <text x="170" y="56" text-anchor="middle" font-size="14" fill="#57606a">“on the bed” says <tspan font-weight="700" fill="#006b3f">which</tspan> phone</text>
+  <use href="#room"/>
+  <use href="#phone" x="112" y="116"/>
+  <rect x="25" y="232" width="290" height="88" rx="8" fill="#e6f2ec" stroke="#006b3f"/>
+  <text x="170" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#006b3f">TAKING</text>
+  <text x="170" y="282" text-anchor="middle" font-size="14" fill="#1f2328">Theme: the phone</text>
+  <text x="170" y="304" text-anchor="middle" font-size="14" fill="#1f2328">Source: the bed  →  pick it up</text>
+
+  <line x1="340" y1="20" x2="340" y2="320" stroke="#d0d7de" stroke-dasharray="4 4"/>
+
+  <!-- right panel -->
+  <g transform="translate(340 0)">
+    <text x="170" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2328">The phone is on the desk</text>
+    <text x="170" y="56" text-anchor="middle" font-size="14" fill="#57606a">“on the bed” says <tspan font-weight="700" fill="#006b3f">where</tspan> to bring it</text>
+    <use href="#room"/>
+    <use href="#phone" x="252" y="110"/>
+    <path d="M258,104 C230,70 160,70 135,108" fill="none" stroke="#006b3f" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+    <rect x="25" y="232" width="290" height="88" rx="8" fill="#e6f2ec" stroke="#006b3f"/>
+    <text x="170" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#006b3f">BRINGING</text>
+    <text x="170" y="282" text-anchor="middle" font-size="14" fill="#1f2328">Theme: the phone</text>
+    <text x="170" y="304" text-anchor="middle" font-size="14" fill="#1f2328">Goal: the bed  →  carry it there</text>
+  </g>
+</svg>

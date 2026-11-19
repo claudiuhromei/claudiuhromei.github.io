@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" width="680" height="300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>A dialogue plan shrinks as the agent gathers information</title>
+  <desc>For the command "Add some blocks above the easternmost purple column", the agent first plans five types of missing information: NUMBER, COLOR, DISPOSITION, DIRECTION and CONFIRMATION. It asks about the first one, how many blocks; after the answer it re-plans and the next question is about the colour. The plan shrinks turn after turn until only the confirmation with a recap is left.</desc>
+  <rect width="680" height="300" fill="#fff"/>
+  <text x="20" y="28" font-size="14" fill="#1f2328"><tspan font-weight="700">User:</tspan> “Add some blocks above the easternmost purple column”</text>
+
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <!-- turn 1 -->
+    <text x="20" y="66" text-anchor="start" font-size="13" fill="#57606a">Plan P1</text>
+    <rect x="90" y="50" width="86" height="26" rx="13" fill="#006b3f"/><text x="133" y="67" fill="#fff">NUMBER</text>
+    <rect x="182" y="50" width="76" height="26" rx="13" fill="#e6f2ec" stroke="#006b3f"/><text x="220" y="67" fill="#006b3f">COLOR</text>
+    <rect x="264" y="50" width="108" height="26" rx="13" fill="#e6f2ec" stroke="#006b3f"/><text x="318" y="67" fill="#006b3f">DISPOSITION</text>
+    <rect x="378" y="50" width="98" height="26" rx="13" fill="#e6f2ec" stroke="#006b3f"/><text x="427" y="67" fill="#006b3f">DIRECTION</text>
+    <rect x="482" y="50" width="128" height="26" rx="13" fill="#f6f8fa" stroke="#8c959f"/><text x="546" y="67" fill="#57606a">CONFIRMATION</text>
+  </g>
+  <text x="90" y="100" font-size="13" fill="#1f2328"><tspan font-weight="700">Agent:</tspan> “How many blocks do I need to add above the easternmost purple column?”</text>
+  <text x="90" y="122" font-size="13" fill="#1f2328"><tspan font-weight="700">User:</tspan> “Three.”</text>
+
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <text x="20" y="160" text-anchor="start" font-size="13" fill="#57606a">Plan P2</text>
+    <rect x="90" y="144" width="76" height="26" rx="13" fill="#006b3f"/><text x="128" y="161" fill="#fff">COLOR</text>
+    <rect x="172" y="144" width="108" height="26" rx="13" fill="#e6f2ec" stroke="#006b3f"/><text x="226" y="161" fill="#006b3f">DISPOSITION</text>
+    <rect x="286" y="144" width="98" height="26" rx="13" fill="#e6f2ec" stroke="#006b3f"/><text x="335" y="161" fill="#006b3f">DIRECTION</text>
+    <rect x="390" y="144" width="128" height="26" rx="13" fill="#f6f8fa" stroke="#8c959f"/><text x="454" y="161" fill="#57606a">CONFIRMATION</text>
+  </g>
+  <text x="90" y="194" font-size="13" fill="#1f2328"><tspan font-weight="700">Agent:</tspan> “What colour should the blocks be?”</text>
+
+  <text x="20" y="238" font-size="13" fill="#57606a">…</text>
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <text x="20" y="262" text-anchor="start" font-size="13" fill="#57606a">Plan Pn</text>
+    <rect x="90" y="246" width="128" height="26" rx="13" fill="#006b3f"/><text x="154" y="263" fill="#fff">CONFIRMATION</text>
+  </g>
+  <text x="230" y="263" font-size="13" fill="#1f2328">recap of the whole command, for the user to confirm</text>
+  <text x="660" y="292" text-anchor="end" font-size="11" fill="#57606a">filled: the information asked about at this turn</text>
+</svg>

@@ -1,10 +1,12 @@
 {%- comment -%}
-  A project figure with its source. Parameters: image (file name in /assets/images/projects/), alt,
-  width and height (pixels of the file, to reserve space while it loads), source (caption text, Markdown),
-  class (optional, e.g. "project-figure--logo").
+  A figure with its source, on a white card. Parameters: image (file name in dir), dir (optional folder
+  under /assets/images/, default "projects"; blog posts use "blog/<post-slug>"), alt, width and height
+  (pixels of the file, to reserve space while it loads), source (caption text, Markdown), class
+  (optional, e.g. "project-figure--logo" or "project-figure--wide").
 {%- endcomment -%}
+{%- assign figure_dir = include.dir | default: "projects" -%}
 <figure class="project-figure {{ include.class }}">
-  <img src="{{ '/assets/images/projects/' | append: include.image | relative_url }}"
+  <img src="{{ '/assets/images/' | append: figure_dir | append: '/' | append: include.image | relative_url }}"
        alt="{{ include.alt | escape_once }}" width="{{ include.width }}" height="{{ include.height }}" loading="lazy" decoding="async">
   <figcaption>{{ include.source | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>
 </figure>

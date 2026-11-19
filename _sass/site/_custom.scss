@@ -82,11 +82,21 @@
   .page {
     padding-inline-end: 0;
   }
+
+  // Pages with a table of contents (blog posts) keep the theme's right column for it: the
+  // sticky "On this page" box sits in that padding, and without it the page scrolls sideways.
+  .page:has(.sidebar__right) {
+    padding-inline-end: $right-sidebar-width-narrow;
+  }
 }
 
 @include breakpoint($x-large) {
   .masthead .site-title {
     min-width: calc(#{$right-sidebar-width} - 2rem);
+  }
+
+  .page:has(.sidebar__right) {
+    padding-inline-end: $right-sidebar-width;
   }
 }
 
@@ -310,6 +320,11 @@ $site-text-measure: 37em;
     margin-top: 0.5em;
     font-size: $type-size-6;
   }
+}
+
+// Wide diagrams: no height cap, so that their text keeps a readable size.
+.project-figure--wide img {
+  max-height: none;
 }
 
 .project-figure--logo img {

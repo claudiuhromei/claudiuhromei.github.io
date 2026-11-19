@@ -27,6 +27,20 @@ class BlogTest < Minitest::Test
     end
   end
 
+  # Posts stay unbuilt while the blog is hidden, so check their figures on disk: every
+  # project-figure include must point to an existing image (dir defaults to "projects").
+  def test_post_figures_exist
+    Dir[File.expand_path("../_blog/*.md", __dir__)].each do |path|
+      File.read(path, encoding: "utf-8").scan(/\{%\s*include project-figure\.html(.*?)%\}/m).each do |(args)|
+        dir = args[/\bdir="([^"]+)"/, 1] || "projects"
+        image = args[/\bimage="([^"]+)"/, 1]
+        refute_nil image, "#{File.basename(path)}: figure without image"
+        file = File.expand_path("../assets/images/#{dir}/#{image}", __dir__)
+        assert File.exist?(file), "#{File.basename(path)}: missing figure #{dir}/#{image}"
+      end
+    end
+  end
+
   def test_post_template_is_never_published
     template = File.read(File.expand_path("../_blog/2026-11-17-post-template.md", __dir__), encoding: "utf-8")
     assert_match(/^published: false$/, template)
