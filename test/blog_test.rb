@@ -17,6 +17,16 @@ class BlogTest < Minitest::Test
     refute_includes links, "/blog/"
   end
 
+  def test_posts_have_title_date_and_excerpt
+    Dir[File.expand_path("../_blog/*.md", __dir__)].each do |path|
+      front_matter = File.read(path, encoding: "utf-8")[/\A---\n(.*?)\n---\n/m, 1]
+      refute_nil front_matter, "#{File.basename(path)} has no front matter"
+      %w[title date excerpt].each do |key|
+        assert_match(/^#{key}: \S/, front_matter, "#{File.basename(path)} has no #{key}")
+      end
+    end
+  end
+
   def test_post_template_is_never_published
     template = File.read(File.expand_path("../_blog/2026-11-17-post-template.md", __dir__), encoding: "utf-8")
     assert_match(/^published: false$/, template)
